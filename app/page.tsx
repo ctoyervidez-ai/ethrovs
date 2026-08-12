@@ -257,8 +257,12 @@ export default function Home() {
       <section className="work section-pad section-dark" id="work">
         <div className="section-top"><div className="section-index">02</div><p className="eyebrow">{c.work.label}</p><h2>{c.work.title}</h2></div>
         <a className="project" href="https://costagrillmx.com/" target="_blank" rel="noreferrer" data-reveal>
-          <div className="project-image"><img src="/assets/costa-grill.png" alt="Costa Grill website" /><span>↗</span></div>
-          <div className="project-info"><div><h3>{c.work.project}</h3><p>{c.work.type}</p></div><p>{c.work.description}</p><b>{c.work.visit} ↗</b></div>
+          <div className="project-logo-stage">
+            <div className="project-orbit project-orbit--outer" /><div className="project-orbit project-orbit--inner" />
+            <div className="costa-logo-frame"><img src="/assets/costa-grill.png" alt="Costa Grill logo" /></div>
+            <span className="project-arrow">↗</span>
+          </div>
+          <div className="project-info"><div><span>01</span><h3>{c.work.project}</h3></div><p>{c.work.type}</p><b>{c.work.visit} ↗</b></div>
         </a>
       </section>
 

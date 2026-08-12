@@ -15,6 +15,7 @@ const copy = {
       primary: "Crear mi página",
       secondary: "Ver nuestro trabajo",
       note: "Entrega desde 24 horas",
+      proof: ["Diseño a tu medida", "Optimizada para celular", "Lista para vender"],
     },
     signal: ["ENERGÍA", "TECNOLOGÍA", "VELOCIDAD", "ETHROVS"],
     manifesto: {
@@ -72,6 +73,7 @@ const copy = {
       form: { name: "Nombre", business: "Negocio", email: "Correo", message: "¿Qué necesitas?", placeholder: "Quiero una página para…", send: "Enviar proyecto", success: "Listo. Se abrirá tu correo para enviar la información." },
     },
     footer: "Energía digital en movimiento.",
+    top: "Volver arriba",
   },
   en: {
     nav: { work: "Work", services: "Services", process: "Process", pricing: "Pricing", contact: "Start a project", menu: "Open menu" },
@@ -83,6 +85,7 @@ const copy = {
       primary: "Build my website",
       secondary: "See our work",
       note: "Delivery from 24 hours",
+      proof: ["Custom design", "Mobile optimized", "Ready to sell"],
     },
     signal: ["ENERGY", "TECHNOLOGY", "VELOCITY", "ETHROVS"],
     manifesto: {
@@ -140,6 +143,7 @@ const copy = {
       form: { name: "Name", business: "Business", email: "Email", message: "What do you need?", placeholder: "I need a website for…", send: "Send project", success: "Ready. Your email app will open with the project details." },
     },
     footer: "Digital energy in motion.",
+    top: "Back to top",
   },
 } as const;
 
@@ -160,9 +164,12 @@ export default function Home() {
   const c = copy[language];
 
   useEffect(() => {
-    const saved = window.localStorage.getItem("ethrovs-language");
-    if (saved === "es" || saved === "en") setLanguage(saved);
-    else if (window.navigator.language.toLowerCase().startsWith("en")) setLanguage("en");
+    const timer = window.setTimeout(() => {
+      const saved = window.localStorage.getItem("ethrovs-language");
+      if (saved === "es" || saved === "en") setLanguage(saved);
+      else if (window.navigator.language.toLowerCase().startsWith("en")) setLanguage("en");
+    }, 0);
+    return () => window.clearTimeout(timer);
   }, []);
 
   useEffect(() => {
@@ -238,6 +245,9 @@ export default function Home() {
             <p>{c.hero.text}</p>
             <div className="actions"><a className="button button--dark" href="#contact">{c.hero.primary} <span>↗</span></a><a className="text-link" href="#work">{c.hero.secondary} ↓</a></div>
           </div>
+          <div className="hero-proof" aria-label="Website benefits">
+            {c.hero.proof.map((item) => <span key={item}>✓ {item}</span>)}
+          </div>
         </div>
         <div className="kinetic-stage" aria-hidden="true">
           <div className="orbit orbit--one" /><div className="orbit orbit--two" />
@@ -259,10 +269,14 @@ export default function Home() {
         <a className="project" href="https://costagrillmx.com/" target="_blank" rel="noreferrer" data-reveal>
           <div className="project-logo-stage">
             <div className="project-orbit project-orbit--outer" /><div className="project-orbit project-orbit--inner" />
-            <div className="costa-logo-frame"><img src="/assets/costa-grill.png" alt="Costa Grill logo" /></div>
+            <div className="costa-logo-frame">
+              {/* The original Costa Grill AVIF stays sharp at every viewport. */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="https://costagrillmx.com/images/logo.avif" alt="Logotipo oficial de Costa Grill" loading="eager" />
+            </div>
             <span className="project-arrow">↗</span>
           </div>
-          <div className="project-info"><div><span>01</span><h3>{c.work.project}</h3></div><p>{c.work.type}</p><b>{c.work.visit} ↗</b></div>
+          <div className="project-info"><div><span>01</span><h3>{c.work.project}</h3></div><p>{c.work.description}</p><b>{c.work.visit} ↗</b></div>
         </a>
       </section>
 
@@ -301,7 +315,7 @@ export default function Home() {
         </form>
       </section>
 
-      <footer className="footer"><Logo /><div><p>{c.footer}</p><a href="#top">Back to top ↑</a></div><small>© 2026 ETHROVS<br />Laredo, TX · Nuevo Laredo, MX</small></footer>
+      <footer className="footer"><Logo /><div><p>{c.footer}</p><a href="#top">{c.top} ↑</a></div><small>© 2026 ETHROVS<br />Laredo, TX · Nuevo Laredo, MX</small></footer>
     </main>
   );
 }

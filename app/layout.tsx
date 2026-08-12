@@ -9,22 +9,22 @@ export async function generateMetadata(): Promise<Metadata> {
   const origin = `${protocol}://${host}`;
 
   return {
-    title: "Ethernal DevOps — Modern Web Solutions",
-    description: "Custom websites, SEO, software and design tailored to ambitious brands.",
+    title: "Ethro Digital — Websites & AI, Built Fast",
+    description: "Fast, professional websites, AI automation, SEO and digital solutions built for growing businesses.",
     icons: {
-      icon: "/assets/ethernal-mark.png",
-      shortcut: "/assets/ethernal-mark.png",
+      icon: "/assets/ethro-mark.png",
+      shortcut: "/assets/ethro-mark.png",
     },
     openGraph: {
-      title: "Ethernal DevOps",
-      description: "Modern Web Solutions for Ambitious Brands",
+      title: "Ethro Digital",
+      description: "Websites & AI, built fast.",
       type: "website",
-      images: [{ url: `${origin}/og.png`, width: 1536, height: 910, alt: "Ethernal DevOps" }],
+      images: [{ url: `${origin}/og.png`, width: 1731, height: 909, alt: "Ethro Digital" }],
     },
     twitter: {
       card: "summary_large_image",
-      title: "Ethernal DevOps",
-      description: "Modern Web Solutions for Ambitious Brands",
+      title: "Ethro Digital",
+      description: "Websites & AI, built fast.",
       images: [`${origin}/og.png`],
     },
   };

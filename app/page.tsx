@@ -8,8 +8,8 @@ const copy = {
   en: {
     nav: { home: "Home", services: "Services", portfolio: "Portfolio", contact: "Contact Us", menu: "Toggle navigation", aria: "Main navigation" },
     hero: {
-      eyebrow: "Modern Web Solutions for Ambitious Brands",
-      subtitle: "Custom websites, SEO, software & design – tailored to your business.",
+      eyebrow: "Websites & AI, Built Fast",
+      subtitle: "Custom websites, automation, SEO and design — tailored to your business.",
       primary: "Get Started Now",
       pricing: "Plans & Pricing",
       tech: "Technologies we work with",
@@ -93,11 +93,11 @@ const copy = {
       quoteAccent: "We decode what your audience wants.",
       quoteMiddle: "We analyze your site's data, understand your ideal customer, and help your brand stand out.",
       quoteEnd: "The best part? We turn insights into real, actionable solutions.”",
-      byline: "Co-founder & Lead Engineer at Ethernal DevOps",
+      byline: "Co-founder & Lead Engineer at Ethro Digital",
     },
     comparison: {
       label: "COMPARISON",
-      title: "Why Ethernal DevOps Stands Out",
+      title: "Why Ethro Digital Stands Out",
       subtitle: "See how we outperform typical web service providers in speed, scale, and innovation.",
       others: "Others",
       good: ["🌍 Seamless local and global collaboration", "🚀 Fast, flexible, and custom-built solutions", "📊 Powerful dashboard control", "📈 Integrated data analytics and reporting", "🧠 Intuitive, user-first interface design"],
@@ -116,11 +116,11 @@ const copy = {
     },
     cta: {
       label: "READY TO GROW?",
-      title: "Grow Now with Ethernal Dev0ps",
+      title: "Grow Now with Ethro Digital",
       subtitle: "Launch a polished website quickly and give your customers a better way to find, trust and contact you.",
       pricing: "See Pricing",
       meeting: "Book a Meeting",
-      imageAlt: "Ethernal DevOps website interface",
+      imageAlt: "Ethro Digital website interface",
     },
     contact: {
       label: "LET'S WORK TOGETHER",
@@ -133,16 +133,17 @@ const copy = {
       reach: "Reach Out to Us",
       emailCopy: "Have questions? We're here to help.",
       phoneCopy: "Need assistance? Call us—we're at your service.",
+      emailAction: "Send us an email",
       fields: { name: "Name", fullName: "Full Name", email: "Email", yourEmail: "Your Email", subject: "Subject of Interest", product: "Website Express 24H", message: "Message", messagePlaceholder: "Tell us about your business...", submit: "Submit" },
       success: "Thank you — we'll reach out shortly.",
     },
-    footer: { aria: "Footer navigation", home: "Home", services: "Services", contact: "Contact", pricing: "Pricing", meeting: "Book a meeting", copyright: "© 2026 Ethernal DevOps — Custom web solutions built for growth." },
+    footer: { aria: "Footer navigation", home: "Home", services: "Services", contact: "Contact", pricing: "Pricing", email: "Email us", meeting: "Book a meeting", copyright: "© 2026 Ethro Digital — Websites and AI built for growth." },
   },
   es: {
     nav: { home: "Inicio", services: "Servicios", portfolio: "Portafolio", contact: "Contáctanos", menu: "Abrir navegación", aria: "Navegación principal" },
     hero: {
-      eyebrow: "Soluciones Web Modernas para Marcas Ambiciosas",
-      subtitle: "Páginas web, SEO, software y diseño adaptados a tu negocio.",
+      eyebrow: "Web e IA, Sin Esperar",
+      subtitle: "Páginas web, automatización, SEO y diseño adaptados a tu negocio.",
       primary: "Comenzar Ahora",
       pricing: "Planes y Precios",
       tech: "Tecnologías que utilizamos",
@@ -226,11 +227,11 @@ const copy = {
       quoteAccent: "Descubrimos lo que quiere tu audiencia.",
       quoteMiddle: "Analizamos los datos de tu página, entendemos a tu cliente ideal y ayudamos a que tu marca destaque.",
       quoteEnd: "¿Lo mejor? Convertimos la información en soluciones reales y prácticas.”",
-      byline: "Cofundador e Ingeniero Principal de Ethernal DevOps",
+      byline: "Cofundador e Ingeniero Principal de Ethro Digital",
     },
     comparison: {
       label: "COMPARACIÓN",
-      title: "Por Qué Ethernal DevOps Destaca",
+      title: "Por Qué Ethro Digital Destaca",
       subtitle: "Descubre cómo superamos a los proveedores tradicionales en velocidad, flexibilidad e innovación.",
       others: "Otros",
       good: ["🌍 Colaboración local y global", "🚀 Soluciones rápidas, flexibles y personalizadas", "📊 Control claro de tus resultados", "📈 Análisis de datos integrado", "🧠 Diseño intuitivo pensado para el usuario"],
@@ -249,11 +250,11 @@ const copy = {
     },
     cta: {
       label: "¿LISTO PARA CRECER?",
-      title: "Crece Ahora con Ethernal Dev0ps",
+      title: "Crece Ahora con Ethro Digital",
       subtitle: "Lanza una página profesional rápidamente y ofrece a tus clientes una mejor forma de encontrarte, confiar y contactarte.",
       pricing: "Ver Precios",
       meeting: "Agendar una Reunión",
-      imageAlt: "Interfaz web de Ethernal DevOps",
+      imageAlt: "Interfaz web de Ethro Digital",
     },
     contact: {
       label: "TRABAJEMOS JUNTOS",
@@ -266,15 +267,16 @@ const copy = {
       reach: "Contáctanos",
       emailCopy: "¿Tienes preguntas? Estamos para ayudarte.",
       phoneCopy: "¿Necesitas ayuda? Llámanos; estamos a tu servicio.",
+      emailAction: "Envíanos un correo",
       fields: { name: "Nombre", fullName: "Nombre Completo", email: "Correo", yourEmail: "Tu Correo", subject: "Servicio de Interés", product: "Website Express 24H", message: "Mensaje", messagePlaceholder: "Cuéntanos sobre tu negocio...", submit: "Enviar" },
       success: "Gracias. Nos comunicaremos contigo muy pronto.",
     },
-    footer: { aria: "Navegación del pie de página", home: "Inicio", services: "Servicios", contact: "Contacto", pricing: "Precios", meeting: "Agendar reunión", copyright: "© 2026 Ethernal DevOps — Soluciones web personalizadas para crecer." },
+    footer: { aria: "Navegación del pie de página", home: "Inicio", services: "Servicios", contact: "Contacto", pricing: "Precios", email: "Enviar correo", meeting: "Agendar reunión", copyright: "© 2026 Ethro Digital — Páginas web e IA creadas para crecer." },
   },
 } as const;
 
 function BrandMark({ small = false }: { small?: boolean }) {
-  return <img className={small ? "brand-mark brand-mark--small" : "brand-mark"} src="/assets/ethernal-mark.png" alt="Ethernal DevOps" />;
+  return <img className={small ? "brand-mark brand-mark--small" : "brand-mark"} src="/assets/ethro-mark.png" alt="Ethro Digital" />;
 }
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
@@ -289,7 +291,7 @@ function Header({ language, setLanguage, menuOpen, setMenuOpen }: { language: La
   const c = copy[language].nav;
   return (
     <header className="site-header">
-      <a className="logo-link" href="#home" aria-label="Ethernal DevOps" onClick={() => setMenuOpen(false)}><BrandMark small /></a>
+      <a className="logo-link" href="#home" aria-label="Ethro Digital" onClick={() => setMenuOpen(false)}><BrandMark small /></a>
       <nav className={menuOpen ? "main-nav main-nav--open" : "main-nav"} aria-label={c.aria}>
         <a href="#home" onClick={() => setMenuOpen(false)}>{c.home}</a>
         <a href="#services" onClick={() => setMenuOpen(false)}>{c.services}</a>
@@ -315,7 +317,7 @@ export default function Home() {
   const c = copy[language];
 
   useEffect(() => {
-    const saved = window.localStorage.getItem("ethernal-language");
+    const saved = window.localStorage.getItem("ethro-language") ?? window.localStorage.getItem("ethernal-language");
     if (saved === "en" || saved === "es") setLanguage(saved);
     else if (window.navigator.language.toLowerCase().startsWith("en")) setLanguage("en");
     setLanguageReady(true);
@@ -324,7 +326,7 @@ export default function Home() {
   useEffect(() => {
     if (!languageReady) return;
     document.documentElement.lang = language;
-    window.localStorage.setItem("ethernal-language", language);
+    window.localStorage.setItem("ethro-language", language);
     setSubmitted(false);
   }, [language, languageReady]);
 
@@ -363,7 +365,7 @@ export default function Home() {
       <section className="hero section-grid" id="home">
         <div className="hero-orbit hero-orbit--one" aria-hidden="true" /><div className="hero-orbit hero-orbit--two" aria-hidden="true" />
         <div className="hero-copy" data-reveal>
-          <BrandMark /><h1>Ethernal Dev<span>0</span>ps</h1>
+          <BrandMark /><h1>Ethro <span>Digital</span></h1>
           <p className="hero-subtitle"><strong>{c.hero.eyebrow}</strong>{c.hero.subtitle}</p>
           <div className="button-row"><a className="button" href="#contact">{c.hero.primary}</a><a className="button" href="#pricing">{c.hero.pricing}</a></div>
           <div className="tech-row" aria-label={c.hero.tech}><span>Google <b>Analytics</b></span><span className="tech-react">⚛ React</span><span>♦ mongoDB</span><span className="tech-framer"><img src="/assets/framer-mark.png" alt="" /> Framer</span></div>
@@ -386,9 +388,9 @@ export default function Home() {
       <section className="data-solutions content-width">
         <article className="glass-card data-card data-card--large" data-reveal>
           <h3>{c.data.businessTitle}</h3><p>{c.data.businessCopy}</p>
-          <div className="data-visual"><strong>{c.data.growth}</strong><div className="metric-pills"><span>▥ {c.data.visits}</span><span>◷ {c.data.lastDay}</span></div><MiniChart /><div className="profile-line"><BrandMark small /> Ethernal DevOps&nbsp; 🌟</div><div className="growth-list"><b>{c.data.growth}&nbsp;⌃</b><span>☑ {c.data.score}</span><span>☑ {c.data.stats}</span><span>☑ {c.data.start}</span></div></div>
+          <div className="data-visual"><strong>{c.data.growth}</strong><div className="metric-pills"><span>▥ {c.data.visits}</span><span>◷ {c.data.lastDay}</span></div><MiniChart /><div className="profile-line"><BrandMark small /> Ethro Digital&nbsp; 🌟</div><div className="growth-list"><b>{c.data.growth}&nbsp;⌃</b><span>☑ {c.data.score}</span><span>☑ {c.data.stats}</span><span>☑ {c.data.start}</span></div></div>
         </article>
-        <article className="glass-card data-card" data-reveal><h3>{c.data.salesTitle}</h3><p>{c.data.salesCopy}</p><div className="sales-board"><span>▥ {c.data.visits}</span><span>◷ {c.data.lastDay}</span>{c.data.salesMetrics.map((item) => <span key={item}>{item}</span>)}<div className="profile-line"><BrandMark small /> Ethernal DevOps&nbsp; 🌟</div></div></article>
+        <article className="glass-card data-card" data-reveal><h3>{c.data.salesTitle}</h3><p>{c.data.salesCopy}</p><div className="sales-board"><span>▥ {c.data.visits}</span><span>◷ {c.data.lastDay}</span>{c.data.salesMetrics.map((item) => <span key={item}>{item}</span>)}<div className="profile-line"><BrandMark small /> Ethro Digital&nbsp; 🌟</div></div></article>
       </section>
 
       <section className="services section-block" id="services">
@@ -413,7 +415,7 @@ export default function Home() {
             <p className="addon-note">{c.pricing.addonNote}</p><a className="button" href="#contact">{c.pricing.cta}</a>
           </article>
         </div>
-        <div className="brand-divider">Ethernal DevOps</div>
+        <div className="brand-divider">Ethro Digital</div>
       </section>
 
       <section className="founder-note section-block"><div className="founder-inner" data-reveal><SectionLabel>{c.founder.label}</SectionLabel><blockquote>{c.founder.quoteStart} <em>{c.founder.quoteAccent}</em><br /><span>{c.founder.quoteMiddle}</span> {c.founder.quoteEnd}</blockquote><div className="founder-byline"><BrandMark small /><span>{c.founder.byline}</span></div></div></section>
@@ -429,18 +431,18 @@ export default function Home() {
         <div className="insight-strip" data-reveal><span>⌁&nbsp; {c.ai.strip[0]}</span><i /><span>♧&nbsp; {c.ai.strip[1]}</span><i /><span>☷&nbsp; {c.ai.strip[2]}</span></div>
       </section>
 
-      <section className="cta section-block"><div className="section-heading" data-reveal><SectionLabel>{c.cta.label}</SectionLabel><h2>{c.cta.title}</h2><p>{c.cta.subtitle}</p><div className="button-row"><a className="button" href="#pricing">{c.cta.pricing}</a><a className="button" href="#contact">{c.cta.meeting}</a></div></div><div className="tilted-preview" data-reveal><img src="/assets/hero-preview.png" alt={c.cta.imageAlt} /></div></section>
+      <section className="cta section-block"><div className="section-heading" data-reveal><SectionLabel>{c.cta.label}</SectionLabel><h2>{c.cta.title}</h2><p>{c.cta.subtitle}</p><div className="button-row"><a className="button" href="#pricing">{c.cta.pricing}</a><a className="button" href="#contact">{c.cta.meeting}</a></div></div><div className="tilted-preview" data-reveal><img src="/og.png" alt={c.cta.imageAlt} /></div></section>
 
       <section className="contact section-block" id="contact">
         <div className="contact-inner content-width">
-          <div className="contact-copy" data-reveal><SectionLabel>{c.contact.label}</SectionLabel><h2>{c.contact.title}</h2><a className="button" href="#pricing">{c.contact.pricing}</a><p className="support-line">✳ <strong>{c.contact.support}</strong> {c.contact.supportText}</p><p className="support-line">✳ <strong>{c.contact.schedule}</strong> {c.contact.scheduleText}</p><div className="contact-cards"><article className="glass-card"><span className="icon-box">▣</span><h3>{c.contact.reach}</h3><p>{c.contact.emailCopy}</p><a href="mailto:ethernaldevops@gmail.com">ethernaldevops@gmail.com</a></article><article className="glass-card"><span className="icon-box">●</span><h3>{c.contact.reach}</h3><p>{c.contact.phoneCopy}</p><a href="tel:+19562513072">+1 (956)-251-3072</a></article></div></div>
+          <div className="contact-copy" data-reveal><SectionLabel>{c.contact.label}</SectionLabel><h2>{c.contact.title}</h2><a className="button" href="#pricing">{c.contact.pricing}</a><p className="support-line">✳ <strong>{c.contact.support}</strong> {c.contact.supportText}</p><p className="support-line">✳ <strong>{c.contact.schedule}</strong> {c.contact.scheduleText}</p><div className="contact-cards"><article className="glass-card"><span className="icon-box">▣</span><h3>{c.contact.reach}</h3><p>{c.contact.emailCopy}</p><a href="mailto:ethernaldevops@gmail.com">{c.contact.emailAction}</a></article><article className="glass-card"><span className="icon-box">●</span><h3>{c.contact.reach}</h3><p>{c.contact.phoneCopy}</p><a href="tel:+19562513072">+1 (956)-251-3072</a></article></div></div>
           <form className="contact-form glass-card" onSubmit={submitForm} data-reveal>
             <label>{c.contact.fields.name}<input name="name" placeholder={c.contact.fields.fullName} required /></label><label>{c.contact.fields.email}<input name="email" type="email" placeholder={c.contact.fields.yourEmail} required /></label><label>{c.contact.fields.subject}<input name="subject" placeholder={c.contact.fields.product} required /></label><label>{c.contact.fields.message}<textarea name="message" placeholder={c.contact.fields.messagePlaceholder} rows={4} required /></label><button className="button" type="submit">{c.contact.fields.submit}</button><p className={submitted ? "form-success form-success--visible" : "form-success"} role="status">{c.contact.success}</p>
           </form>
         </div>
       </section>
 
-      <footer className="site-footer"><div className="footer-top content-width"><BrandMark small /><nav aria-label={c.footer.aria}><a href="#home">{c.footer.home}</a><a href="#services">{c.footer.services}</a><a href="#contact">{c.footer.contact}</a><a href="#pricing">{c.footer.pricing}</a></nav><a href="mailto:ethernaldevops@gmail.com">ethernaldevops@gmail.com</a><a className="button button--small" href="#contact">{c.footer.meeting}</a></div><div className="footer-bottom content-width"><a href="https://www.instagram.com/ethernal_devops/" target="_blank" rel="noreferrer" aria-label="Instagram">◎</a><p>{c.footer.copyright}</p></div></footer>
+      <footer className="site-footer"><div className="footer-top content-width"><BrandMark small /><nav aria-label={c.footer.aria}><a href="#home">{c.footer.home}</a><a href="#services">{c.footer.services}</a><a href="#contact">{c.footer.contact}</a><a href="#pricing">{c.footer.pricing}</a></nav><a href="mailto:ethernaldevops@gmail.com">{c.footer.email}</a><a className="button button--small" href="#contact">{c.footer.meeting}</a></div><div className="footer-bottom content-width"><a href="https://www.instagram.com/ethernal_devops/" target="_blank" rel="noreferrer" aria-label="Instagram">◎</a><p>{c.footer.copyright}</p></div></footer>
     </main>
   );
 }

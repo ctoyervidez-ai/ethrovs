@@ -37,6 +37,10 @@ const copy = {
           name: "VSR 444",
           description: "Una tienda editorial de edición limitada que une moda, música y una identidad visual construida desde la presión.",
         },
+        beck: {
+          name: "BECK",
+          description: "Una experiencia editorial y refinada para medicina estética en Nuevo Laredo, creada para presentar tratamientos y conectar con nuevos pacientes.",
+        },
       },
     },
     services: {
@@ -113,6 +117,10 @@ const copy = {
         vsr: {
           name: "VSR 444",
           description: "A limited-release editorial store bringing fashion, music and a visual identity built from pressure together.",
+        },
+        beck: {
+          name: "BECK",
+          description: "A refined editorial experience for aesthetic medicine in Nuevo Laredo, designed to present treatments and connect with new patients.",
         },
       },
     },
@@ -302,6 +310,17 @@ export default function Home() {
               <span className="project-chip">Limited Release · 2026</span>
             </div>
             <div className="project-info"><div><span>02</span><h3>{c.work.projects.vsr.name}</h3></div><p>{c.work.projects.vsr.description}</p><b>{c.work.visit} ↗</b></div>
+          </a>
+          <a id="beck-project" className="project project--beck" href="https://beckcentrodebelleza.com/" target="_blank" rel="noreferrer" data-reveal>
+            <div className="project-visual beck-preview">
+              {/* Official interior image from BECK Centro de Belleza. */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/assets/beck-interior.jpg" alt="Interior de BECK Centro de Belleza" loading="lazy" />
+              <span className="project-arrow">↗</span>
+              <span className="beck-wordmark">BECK</span>
+              <span className="project-chip">Medicina estética · 2026</span>
+            </div>
+            <div className="project-info"><div><span>03</span><h3>{c.work.projects.beck.name}</h3></div><p>{c.work.projects.beck.description}</p><b>{c.work.visit} ↗</b></div>
           </a>
         </div>
       </section>

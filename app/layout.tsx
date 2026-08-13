@@ -14,6 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
     icons: {
       icon: "/assets/ethro-mark.png",
       shortcut: "/assets/ethro-mark.png",
+      apple: [{ url: "/apple-touch-icon.png", sizes: "1024x1024", type: "image/png" }],
     },
     openGraph: {
       title: "ETHROVS",

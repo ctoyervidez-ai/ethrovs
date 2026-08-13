@@ -27,10 +27,17 @@ const copy = {
     work: {
       label: "Trabajo seleccionado",
       title: "Diseñado para verse bien. Construido para funcionar.",
-      project: "Costa Grill",
-      type: "Estrategia · Diseño · Desarrollo",
-      description: "Una experiencia digital cálida y directa para un restaurante local, optimizada para convertir visitas en reservaciones.",
       visit: "Ver proyecto en vivo",
+      projects: {
+        costa: {
+          name: "Costa Grill",
+          description: "Una experiencia digital cálida y directa para un restaurante local, optimizada para convertir visitas en reservaciones.",
+        },
+        vsr: {
+          name: "VSR 444",
+          description: "Una tienda editorial de edición limitada que une moda, música y una identidad visual construida desde la presión.",
+        },
+      },
     },
     services: {
       label: "Lo que hacemos",
@@ -97,10 +104,17 @@ const copy = {
     work: {
       label: "Selected work",
       title: "Designed to look sharp. Built to work hard.",
-      project: "Costa Grill",
-      type: "Strategy · Design · Development",
-      description: "A warm, direct digital experience for a local restaurant, optimized to turn visits into reservations.",
       visit: "View live project",
+      projects: {
+        costa: {
+          name: "Costa Grill",
+          description: "A warm, direct digital experience for a local restaurant, optimized to turn visits into reservations.",
+        },
+        vsr: {
+          name: "VSR 444",
+          description: "A limited-release editorial store bringing fashion, music and a visual identity built from pressure together.",
+        },
+      },
     },
     services: {
       label: "What we do",
@@ -266,18 +280,30 @@ export default function Home() {
 
       <section className="work section-pad section-dark" id="work">
         <div className="section-top"><div className="section-index">02</div><p className="eyebrow">{c.work.label}</p><h2>{c.work.title}</h2></div>
-        <a className="project" href="https://costagrillmx.com/" target="_blank" rel="noreferrer" data-reveal>
-          <div className="project-logo-stage">
-            <div className="project-orbit project-orbit--outer" /><div className="project-orbit project-orbit--inner" />
-            <div className="costa-logo-frame">
-              {/* The original Costa Grill AVIF stays sharp at every viewport. */}
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="https://costagrillmx.com/images/logo.avif" alt="Logotipo oficial de Costa Grill" loading="eager" />
+        <div className="project-list">
+          <a className="project" href="https://costagrillmx.com/" target="_blank" rel="noreferrer" data-reveal>
+            <div className="project-visual project-logo-stage">
+              <div className="project-orbit project-orbit--outer" /><div className="project-orbit project-orbit--inner" />
+              <div className="costa-logo-frame">
+                {/* The original Costa Grill AVIF stays sharp at every viewport. */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="https://costagrillmx.com/images/logo.avif" alt="Logotipo oficial de Costa Grill" loading="eager" />
+              </div>
+              <span className="project-arrow">↗</span>
             </div>
-            <span className="project-arrow">↗</span>
-          </div>
-          <div className="project-info"><div><span>01</span><h3>{c.work.project}</h3></div><p>{c.work.description}</p><b>{c.work.visit} ↗</b></div>
-        </a>
+            <div className="project-info"><div><span>01</span><h3>{c.work.projects.costa.name}</h3></div><p>{c.work.projects.costa.description}</p><b>{c.work.visit} ↗</b></div>
+          </a>
+          <a id="vsr444-project" className="project project--vsr" href="https://vsr444.com/" target="_blank" rel="noreferrer" data-reveal>
+            <div className="project-visual vsr-preview">
+              {/* Official high-resolution social preview from VSR 444. */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="https://vsr444.com/og.jpg" alt="VSR 444 limited release website" loading="lazy" />
+              <span className="project-arrow">↗</span>
+              <span className="project-chip">Limited Release · 2026</span>
+            </div>
+            <div className="project-info"><div><span>02</span><h3>{c.work.projects.vsr.name}</h3></div><p>{c.work.projects.vsr.description}</p><b>{c.work.visit} ↗</b></div>
+          </a>
+        </div>
       </section>
 
       <section className="services section-pad" id="services">
@@ -286,7 +312,7 @@ export default function Home() {
       </section>
 
       <section className="process section-pad section-blue" id="process">
-        <div className="process-heading" data-reveal><p className="eyebrow">{c.process.label}</p><h2>{c.process.title}</h2><div className="process-symbol" aria-hidden="true"><i /></div></div>
+        <div className="process-heading" data-reveal><div className="process-heading-copy"><p className="eyebrow">{c.process.label}</p><h2>{c.process.title}</h2></div><div className="process-symbol" aria-hidden="true"><i /></div></div>
         <div className="steps">{c.process.steps.map(([number, title, text]) => <article key={number} data-reveal><span>{number}</span><h3>{title}</h3><p>{text}</p></article>)}</div>
       </section>
 

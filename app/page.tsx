@@ -290,14 +290,12 @@ export default function Home() {
         <div className="section-top"><div className="section-index">02</div><p className="eyebrow">{c.work.label}</p><h2>{c.work.title}</h2></div>
         <div className="project-list">
           <a className="project" href="https://costagrillmx.com/" target="_blank" rel="noreferrer" data-reveal>
-            <div className="project-visual project-logo-stage">
-              <div className="project-orbit project-orbit--outer" /><div className="project-orbit project-orbit--inner" />
-              <div className="costa-logo-frame">
-                {/* The original Costa Grill AVIF stays sharp at every viewport. */}
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="https://costagrillmx.com/images/logo.avif" alt="Logotipo oficial de Costa Grill" loading="eager" />
-              </div>
+            <div className="project-visual costa-preview">
+              {/* Local high-resolution image keeps the portfolio independent from the client website. */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/assets/costa-grill.png" alt="Costa Grill restaurante y logotipo" loading="eager" />
               <span className="project-arrow">↗</span>
+              <span className="project-chip">Restaurant · 2026</span>
             </div>
             <div className="project-info"><div><span>01</span><h3>{c.work.projects.costa.name}</h3></div><p>{c.work.projects.costa.description}</p><b>{c.work.visit} ↗</b></div>
           </a>

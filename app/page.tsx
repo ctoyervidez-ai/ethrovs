@@ -55,6 +55,10 @@ const copy = {
           name: "BECK",
           description: "Una experiencia editorial y refinada para medicina estética en Nuevo Laredo, creada para presentar tratamientos y conectar con nuevos pacientes.",
         },
+        excessive: {
+          name: "Excessive Detailing",
+          description: "Una experiencia bilingüe para detallado automotriz móvil premium en Dallas–Fort Worth, diseñada para mostrar resultados y convertir visitas en citas.",
+        },
       },
     },
     services: {
@@ -134,6 +138,10 @@ const copy = {
         beck: {
           name: "BECK",
           description: "A refined editorial experience for aesthetic medicine in Nuevo Laredo, designed to present treatments and connect with new patients.",
+        },
+        excessive: {
+          name: "Excessive Detailing",
+          description: "A bilingual experience for premium mobile auto detailing across Dallas–Fort Worth, designed to showcase results and turn visits into bookings.",
         },
       },
     },
@@ -345,6 +353,18 @@ export default function Home() {
               <span className="project-chip">Medicina estética · 2026</span>
             </div>
             <div className="project-info"><div><span>03</span><h3>{c.work.projects.beck.name}</h3></div><p>{c.work.projects.beck.description}</p><b>{c.work.visit} ↗</b></div>
+          </a>
+          <a id="excessive-project" className="project project--excessive" href="https://excessivedetailing.com/" target="_blank" rel="noreferrer" data-reveal>
+            <div className="project-visual excessive-preview">
+              {/* Official project imagery is stored locally for a reliable portfolio preview. */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img className="excessive-cover" src="/assets/excessive-jeep.jpg" alt="Jeep detallado por Excessive Detailing" loading="lazy" />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img className="excessive-logo" src="/assets/excessive-logo.png" alt="Excessive Detailing" loading="lazy" />
+              <span className="project-arrow">↗</span>
+              <span className="project-chip">Mobile detailing · DFW</span>
+            </div>
+            <div className="project-info"><div><span>04</span><h3>{c.work.projects.excessive.name}</h3></div><p>{c.work.projects.excessive.description}</p><b>{c.work.visit} ↗</b></div>
           </a>
         </div>
       </section>

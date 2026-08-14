@@ -9,12 +9,12 @@ const pricingByMarket = {
   us: {
     price: "$200",
     currency: "USD",
-    extras: ["+$20", "+$30", "+$35", "+$25", "$15"],
+    extras: ["+$20", "+$30", "+$35", "+$25"],
   },
   mx: {
     price: "$3,900",
     currency: "MXN",
-    extras: ["+$390", "+$590", "+$690", "+$490", "$290"],
+    extras: ["+$390", "+$590", "+$690", "+$490"],
   },
 } as const;
 
@@ -86,8 +86,7 @@ const copy = {
       add: "Extras",
       marketLabel: "Precios para",
       markets: { us: "USA", mx: "México" },
-      month: "/mes",
-      extras: ["Cambios generales", "Versión bilingüe", "Google Business", "Página adicional", "Mantenimiento"],
+      extras: ["Cambios generales", "Versión bilingüe", "Google Business", "Página adicional"],
     },
     contact: {
       label: "¿Listo para moverte?",
@@ -167,8 +166,7 @@ const copy = {
       add: "Add-ons",
       marketLabel: "Pricing for",
       markets: { us: "USA", mx: "Mexico" },
-      month: "/mo",
-      extras: ["General changes", "Bilingual version", "Google Business", "Additional page", "Monthly care"],
+      extras: ["General changes", "Bilingual version", "Google Business", "Additional page"],
     },
     contact: {
       label: "Ready to move?",
@@ -376,7 +374,7 @@ export default function Home() {
             <ul>{c.pricing.items.map((item) => <li key={item}>{item}<span>✓</span></li>)}</ul>
             <p className="payment">{c.pricing.payment}</p><a className="button button--light" href="#contact">{c.pricing.cta} ↗</a>
           </article>
-          <aside className="extras" data-reveal><h3>{c.pricing.add}</h3>{c.pricing.extras.map((name, index) => <div key={name}><span>{name}</span><b>{marketPricing.extras[index]}{index === c.pricing.extras.length - 1 ? c.pricing.month : ""}</b></div>)}</aside>
+          <aside className="extras" data-reveal><h3>{c.pricing.add}</h3>{c.pricing.extras.map((name, index) => <div key={name}><span>{name}</span><b>{marketPricing.extras[index]}</b></div>)}</aside>
         </div>
       </section>
 

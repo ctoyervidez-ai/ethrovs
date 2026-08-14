@@ -3,6 +3,20 @@
 import { FormEvent, useEffect, useRef, useState } from "react";
 
 type Language = "es" | "en";
+type Market = "us" | "mx";
+
+const pricingByMarket = {
+  us: {
+    price: "$200",
+    currency: "USD",
+    extras: ["+$20", "+$30", "+$35", "+$25", "$15"],
+  },
+  mx: {
+    price: "$3,900",
+    currency: "MXN",
+    extras: ["+$390", "+$590", "+$690", "+$490", "$290"],
+  },
+} as const;
 
 const copy = {
   es: {
@@ -65,15 +79,15 @@ const copy = {
       label: "Oferta de lanzamiento",
       title: "Website Express",
       time: "24H",
-      price: "$149",
-      currency: "USD",
-      mx: "o $2,900 MXN",
       description: "Una página profesional de hasta seis secciones, lista para presentar tu negocio y recibir clientes.",
       items: ["Diseño personalizado", "Versión móvil", "Botones de llamada, mapa y WhatsApp", "SEO básico y conexión de dominio", "Una ronda de cambios"],
       payment: "50% para comenzar · 50% antes de publicar",
       cta: "Reservar mi página",
       add: "Extras",
-      extras: [["Versión bilingüe", "+$75"], ["Google Business", "+$99"], ["Página adicional", "+$50"], ["Mantenimiento", "$29/mes"]],
+      marketLabel: "Precios para",
+      markets: { us: "USA", mx: "México" },
+      month: "/mes",
+      extras: ["Cambios generales", "Versión bilingüe", "Google Business", "Página adicional", "Mantenimiento"],
     },
     contact: {
       label: "¿Listo para moverte?",
@@ -146,15 +160,15 @@ const copy = {
       label: "Launch offer",
       title: "Website Express",
       time: "24H",
-      price: "$149",
-      currency: "USD",
-      mx: "or $2,900 MXN",
       description: "A professional website with up to six sections, ready to present your business and welcome customers.",
       items: ["Custom design", "Mobile version", "Call, map and WhatsApp buttons", "Basic SEO and domain connection", "One revision round"],
       payment: "50% to start · 50% before launch",
       cta: "Reserve my website",
       add: "Add-ons",
-      extras: [["Bilingual version", "+$75"], ["Google Business", "+$99"], ["Additional page", "+$50"], ["Monthly care", "$29/mo"]],
+      marketLabel: "Pricing for",
+      markets: { us: "USA", mx: "Mexico" },
+      month: "/mo",
+      extras: ["General changes", "Bilingual version", "Google Business", "Additional page", "Monthly care"],
     },
     contact: {
       label: "Ready to move?",
@@ -180,10 +194,12 @@ function Logo({ compact = false }: { compact?: boolean }) {
 
 export default function Home() {
   const [language, setLanguage] = useState<Language>("es");
+  const [market, setMarket] = useState<Market>("us");
   const [menuOpen, setMenuOpen] = useState(false);
   const [sent, setSent] = useState(false);
   const shellRef = useRef<HTMLElement>(null);
   const c = copy[language];
+  const marketPricing = pricingByMarket[market];
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
@@ -198,6 +214,18 @@ export default function Home() {
     document.documentElement.lang = language;
     window.localStorage.setItem("ethrovs-language", language);
   }, [language]);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      const saved = window.localStorage.getItem("ethrovs-market");
+      if (saved === "us" || saved === "mx") setMarket(saved);
+    }, 0);
+    return () => window.clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem("ethrovs-market", market);
+  }, [market]);
 
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -337,12 +365,18 @@ export default function Home() {
         <div className="section-top"><div className="section-index">04</div><p className="eyebrow">{c.pricing.label}</p><h2>{c.pricing.title} <em>{c.pricing.time}</em></h2></div>
         <div className="pricing-layout">
           <article className="price-card" data-reveal>
-            <div className="price-line"><strong>{c.pricing.price}</strong><span>{c.pricing.currency}<br /><small>{c.pricing.mx}</small></span></div>
+            <div className="market-switch" role="group" aria-label={c.pricing.marketLabel}>
+              <span>{c.pricing.marketLabel}</span>
+              <div>
+                {(["us", "mx"] as const).map((option) => <button key={option} type="button" className={market === option ? "is-active" : ""} aria-pressed={market === option} onClick={() => setMarket(option)}>{c.pricing.markets[option]}</button>)}
+              </div>
+            </div>
+            <div className="price-line"><strong>{marketPricing.price}</strong><span>{marketPricing.currency}<br /><small>{c.pricing.markets[market]}</small></span></div>
             <p className="price-description">{c.pricing.description}</p>
             <ul>{c.pricing.items.map((item) => <li key={item}>{item}<span>✓</span></li>)}</ul>
             <p className="payment">{c.pricing.payment}</p><a className="button button--light" href="#contact">{c.pricing.cta} ↗</a>
           </article>
-          <aside className="extras" data-reveal><h3>{c.pricing.add}</h3>{c.pricing.extras.map(([name, price]) => <div key={name}><span>{name}</span><b>{price}</b></div>)}</aside>
+          <aside className="extras" data-reveal><h3>{c.pricing.add}</h3>{c.pricing.extras.map((name, index) => <div key={name}><span>{name}</span><b>{marketPricing.extras[index]}{index === c.pricing.extras.length - 1 ? c.pricing.month : ""}</b></div>)}</aside>
         </div>
       </section>
 

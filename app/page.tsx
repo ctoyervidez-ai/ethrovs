@@ -59,6 +59,10 @@ const copy = {
           name: "Excessive Detailing",
           description: "Una experiencia bilingüe para detallado automotriz móvil premium en Dallas–Fort Worth, diseñada para mostrar resultados y convertir visitas en citas.",
         },
+        ciao: {
+          name: "Ciao Kitchen",
+          description: "Una experiencia cálida y llena de sabor para una pizzería artesanal de Nuevo Laredo, diseñada para abrir el apetito y convertir visitas en pedidos.",
+        },
       },
     },
     services: {
@@ -142,6 +146,10 @@ const copy = {
         excessive: {
           name: "Excessive Detailing",
           description: "A bilingual experience for premium mobile auto detailing across Dallas–Fort Worth, designed to showcase results and turn visits into bookings.",
+        },
+        ciao: {
+          name: "Ciao Kitchen",
+          description: "A warm, flavor-forward experience for an artisan pizzeria in Nuevo Laredo, designed to build appetite and turn visits into orders.",
         },
       },
     },
@@ -365,6 +373,16 @@ export default function Home() {
               <span className="project-chip">Mobile detailing · DFW</span>
             </div>
             <div className="project-info"><div><span>04</span><h3>{c.work.projects.excessive.name}</h3></div><p>{c.work.projects.excessive.description}</p><b>{c.work.visit} ↗</b></div>
+          </a>
+          <a id="ciao-project" className="project project--ciao" href="https://ciaokitchenmx.com/" target="_blank" rel="noreferrer" data-reveal>
+            <div className="project-visual ciao-preview">
+              {/* Official social preview is stored locally for a reliable portfolio image. */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/assets/ciao-kitchen.png" alt="Ciao Kitchen pizza artesanal en Nuevo Laredo" loading="lazy" />
+              <span className="project-arrow">↗</span>
+              <span className="project-chip">Pizza artesanal · 2026</span>
+            </div>
+            <div className="project-info"><div><span>05</span><h3>{c.work.projects.ciao.name}</h3></div><p>{c.work.projects.ciao.description}</p><b>{c.work.visit} ↗</b></div>
           </a>
         </div>
       </section>

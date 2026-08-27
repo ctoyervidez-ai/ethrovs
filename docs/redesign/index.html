@@ -1,0 +1,907 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ethrovs Estudio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap">
+
+<style>
+/* ==========================================================
+   ETHROVS — estudio web bilingue de la frontera
+   Cada captura se embebe UNA vez como variable y se usa en
+   el deck y en la reja de trabajo.
+   ========================================================== */
+
+:root{
+  --shot-beck:url("./shots/beck.jpg");
+  --shot-exc:url("./shots/excessive.jpg");
+  --shot-costa:url("./shots/costa-grill.jpg");
+  --shot-vsr:url("./shots/vsr444.jpg");
+
+  --paper:#f5f4ef;
+  --surface:#fffdf7;
+  --ink:#141412;
+  --muted:#6d6c66;
+  --line:rgba(20,20,18,.14);
+  --line-soft:rgba(20,20,18,.07);
+  --blue:#2452ff;
+  --acid:#d9ff52;
+  --on-acid:#141412;
+  --shadow:0 1px 2px rgba(20,20,18,.05),0 14px 34px -18px rgba(20,20,18,.28);
+
+  --band-bg:#141412;
+  --band-fg:#f5f4ef;
+  --band-dim:rgba(245,244,239,.62);
+  --band-note:rgba(245,244,239,.44);
+  --band-line:rgba(245,244,239,.26);
+
+  --max:1320px;
+  --gutter:clamp(20px,4vw,64px);
+  --sans:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --serif:"Instrument Serif",Georgia,"Times New Roman",serif;
+  --e:cubic-bezier(.22,.7,.3,1);
+}
+
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#100f0d;
+    --surface:#1a1917;
+    --ink:#f3f2ea;
+    --muted:#9a988e;
+    --line:rgba(243,242,234,.17);
+    --line-soft:rgba(243,242,234,.08);
+    --blue:#7d97ff;
+    --shadow:0 1px 2px rgba(0,0,0,.5),0 18px 44px -20px rgba(0,0,0,.85);
+    --band-bg:#211f1c;
+    --band-line:rgba(245,244,239,.3);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#100f0d;
+  --surface:#1a1917;
+  --ink:#f3f2ea;
+  --muted:#9a988e;
+  --line:rgba(243,242,234,.17);
+  --line-soft:rgba(243,242,234,.08);
+  --blue:#7d97ff;
+  --shadow:0 1px 2px rgba(0,0,0,.5),0 18px 44px -20px rgba(0,0,0,.85);
+  --band-bg:#211f1c;
+  --band-line:rgba(245,244,239,.3);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-weight:400;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:2px}
+
+.wrap{max-width:var(--max);margin-inline:auto;padding-inline:var(--gutter)}
+
+/* ---------- tipo compartido ---------- */
+
+.label{
+  font-size:.66rem;font-weight:700;letter-spacing:.17em;text-transform:uppercase;
+  color:var(--muted);margin:0;
+}
+.serif{font-family:var(--serif);font-weight:400;font-style:italic;letter-spacing:-.005em}
+
+.sec-head{
+  display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;
+  gap:16px;padding-bottom:22px;border-bottom:1px solid var(--line);
+  margin-bottom:clamp(30px,4vw,46px);
+}
+.sec-head h2{
+  font-size:clamp(1.7rem,3.4vw,2.7rem);font-weight:700;letter-spacing:-.04em;
+  line-height:1.05;margin:0;max-width:20ch;text-wrap:balance;
+}
+.sec-head h2 .serif{color:var(--blue)}
+.sec{padding-block:clamp(52px,7.5vw,100px)}
+
+/* ---------- nav ---------- */
+
+.nav{
+  position:sticky;top:0;z-index:60;
+  background:color-mix(in srgb,var(--paper) 86%,transparent);
+  backdrop-filter:saturate(150%) blur(14px);
+  -webkit-backdrop-filter:saturate(150%) blur(14px);
+  border-bottom:1px solid var(--line-soft);
+}
+.nav-in{display:flex;align-items:center;gap:clamp(12px,3vw,44px);height:68px}
+.mark{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.11em;font-size:.9rem}
+.mark svg{width:34px;height:17px;flex:none;overflow:visible}
+.nav-links{display:none;gap:clamp(14px,2.2vw,28px);margin-left:auto}
+@media(min-width:980px){.nav-links{display:flex}}
+.nav-links a{
+  font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--muted);padding:6px 0;position:relative;transition:color .18s ease;
+}
+.nav-links a::after{
+  content:"";position:absolute;left:0;right:100%;bottom:0;height:1.5px;
+  background:var(--ink);transition:right .28s var(--e);
+}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a:hover::after{right:0}
+
+.lang{display:flex;gap:2px;margin-left:auto;border:1px solid var(--line);border-radius:2px;padding:2px}
+@media(min-width:980px){.lang{margin-left:0}}
+.lang button{
+  font-size:.62rem;font-weight:700;letter-spacing:.12em;
+  padding:6px 9px;border-radius:1px;color:var(--muted);transition:.2s ease;
+}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.nav-cta{display:none}
+@media(min-width:620px){.nav-cta{display:inline-flex}}
+
+/* ---------- botones ---------- */
+
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:.72rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
+  padding:13px 20px;border:1px solid transparent;border-radius:2px;cursor:pointer;
+  font-family:var(--sans);
+  transition:transform .2s var(--e),background .2s ease,color .2s ease,border-color .2s ease;
+}
+.btn .arw{transition:transform .25s var(--e)}
+.btn:hover .arw{transform:translate(3px,-3px)}
+.btn-solid{background:var(--ink);color:var(--paper)}
+.btn-solid:hover{transform:translateY(-2px)}
+.btn-acid{background:var(--acid);color:var(--on-acid)}
+.btn-acid:hover{transform:translateY(-2px)}
+.btn-ghost{border-color:var(--line);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--ink)}
+.btn-line{border-color:var(--band-line);color:var(--band-fg)}
+.btn-line:hover{border-color:var(--band-fg);transform:translateY(-2px)}
+.btn-sm{padding:10px 15px;font-size:.66rem}
+.btn-wide{width:100%;justify-content:space-between}
+
+/* ---------- hero ---------- */
+
+.hero{position:relative;padding-block:clamp(44px,6.5vw,88px) clamp(38px,5vw,62px)}
+.grid-rules{
+  position:absolute;inset:0;max-width:var(--max);margin-inline:auto;
+  padding-inline:var(--gutter);pointer-events:none;
+  display:grid;grid-template-columns:repeat(6,1fr);z-index:0;
+}
+@media(min-width:920px){.grid-rules{grid-template-columns:repeat(12,1fr)}}
+.grid-rules span{border-left:1px solid var(--line-soft)}
+.grid-rules span:last-child{border-right:1px solid var(--line-soft)}
+
+.hero-in{position:relative;z-index:1;display:grid;gap:clamp(38px,5vw,58px);align-items:center}
+@media(min-width:1000px){.hero-in{grid-template-columns:1.08fr .92fr;gap:clamp(40px,4.5vw,72px)}}
+
+.eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:clamp(18px,2.8vw,28px)}
+.eyebrow .dash{width:34px;height:1.5px;background:var(--blue);flex:none}
+
+h1{
+  font-size:clamp(2.85rem,7.4vw,5.9rem);
+  font-weight:800;line-height:.93;letter-spacing:-.045em;
+  margin:0 0 clamp(20px,2.5vw,28px);text-wrap:balance;
+}
+h1 .serif{
+  display:block;color:var(--blue);
+  font-size:1.04em;line-height:1.02;letter-spacing:-.015em;font-weight:400;
+}
+.lead{
+  font-size:clamp(1.02rem,1.35vw,1.19rem);line-height:1.55;color:var(--muted);
+  max-width:39ch;margin:0 0 clamp(24px,3vw,32px);
+}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:clamp(30px,3.8vw,42px)}
+
+.proof{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--line)}
+@media(min-width:620px){.proof{grid-template-columns:repeat(4,1fr)}}
+.proof div{padding:16px 16px 0 0;border-right:1px solid var(--line-soft)}
+.proof div:last-child{border-right:0}
+.proof b{
+  display:block;font-size:clamp(1.25rem,2vw,1.6rem);font-weight:700;
+  letter-spacing:-.035em;font-variant-numeric:tabular-nums;line-height:1.1;
+}
+.proof .label{margin-top:4px;font-size:.6rem}
+
+/* ---------- deck del hero ---------- */
+
+.deck-col{display:flex;flex-direction:column;gap:18px}
+.deck{position:relative;aspect-ratio:16/10;width:100%;perspective:1400px}
+.deck figure{
+  position:absolute;inset:0;margin:0;border-radius:4px;overflow:hidden;
+  border:1px solid var(--line);background:var(--surface);box-shadow:var(--shadow);
+  background-size:cover;background-position:top center;background-repeat:no-repeat;
+  transition:opacity .7s var(--e),transform .7s var(--e);
+  will-change:transform,opacity;
+}
+.deck figure[data-pos="0"]{opacity:1;transform:translate3d(0,0,0) scale(1);z-index:4}
+.deck figure[data-pos="1"]{opacity:.55;transform:translate3d(0,-16px,-90px) scale(.955);z-index:3}
+.deck figure[data-pos="2"]{opacity:.28;transform:translate3d(0,-30px,-180px) scale(.912);z-index:2}
+.deck figure[data-pos="3"]{opacity:0;transform:translate3d(0,-40px,-260px) scale(.88);z-index:1}
+
+.deck-meta{display:flex;align-items:flex-end;justify-content:space-between;gap:18px}
+.deck-name{font-size:1.15rem;font-weight:700;letter-spacing:-.03em;margin:5px 0 0}
+.deck-dots{display:flex;gap:6px;flex:none}
+.deck-dots button{
+  width:26px;height:3px;padding:0;border-radius:2px;
+  background:var(--line);transition:background .3s ease;
+}
+.deck-dots button[aria-current="true"]{background:var(--ink)}
+
+/* ---------- trabajo ---------- */
+
+.work-grid{display:grid;gap:clamp(28px,3.5vw,46px)}
+@media(min-width:800px){.work-grid{grid-template-columns:1fr 1fr}}
+.case{display:block}
+.case-shot{
+  position:relative;aspect-ratio:16/10;overflow:hidden;border-radius:4px;
+  border:1px solid var(--line);background:var(--surface);
+}
+.case-shot .img{
+  position:absolute;inset:0;
+  background-size:cover;background-position:top center;background-repeat:no-repeat;
+  transition:transform .65s var(--e);
+}
+.case:hover .img,.case:focus-visible .img{transform:scale(1.035)}
+.case-shot .go{
+  position:absolute;right:12px;bottom:12px;
+  width:40px;height:40px;border-radius:50%;display:grid;place-items:center;
+  background:var(--acid);color:var(--on-acid);
+  opacity:0;transform:translateY(8px);
+  transition:opacity .3s ease,transform .3s var(--e);
+}
+.case:hover .go,.case:focus-visible .go{opacity:1;transform:translateY(0)}
+.case-bar{display:flex;align-items:baseline;gap:12px;margin-top:16px}
+.case-bar .idx{
+  font-size:.66rem;font-weight:700;letter-spacing:.06em;color:var(--muted);
+  font-variant-numeric:tabular-nums;flex:none;padding-top:2px;
+}
+.case h3{font-size:1.32rem;font-weight:700;letter-spacing:-.032em;margin:6px 0 0;line-height:1.15}
+.case p{font-size:.94rem;line-height:1.55;color:var(--muted);margin:9px 0 0;max-width:46ch}
+.case .live{
+  display:inline-flex;align-items:center;gap:7px;margin-top:13px;
+  font-size:.66rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+}
+.case .live .arw{transition:transform .25s var(--e)}
+.case:hover .live .arw{transform:translate(3px,-3px)}
+
+/* ---------- servicios ---------- */
+
+.svc{display:grid;gap:clamp(22px,2.6vw,34px)}
+@media(min-width:800px){.svc{grid-template-columns:repeat(3,1fr)}}
+.svc article{
+  border-top:2px solid var(--ink);padding-top:20px;
+  display:flex;flex-direction:column;gap:11px;
+}
+.svc h3{font-size:1.28rem;font-weight:700;letter-spacing:-.032em;margin:0;line-height:1.15}
+.svc p{margin:0;font-size:.94rem;line-height:1.58;color:var(--muted)}
+.svc ul{margin:4px 0 0;padding:0;display:flex;flex-direction:column;gap:7px}
+.svc li{
+  list-style:none;font-size:.72rem;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink);
+  padding-left:16px;position:relative;
+}
+.svc li::before{content:"";position:absolute;left:0;top:.5em;width:7px;height:1.5px;background:var(--blue)}
+
+/* ---------- proceso ---------- */
+
+.steps{display:flex;flex-direction:column}
+.step{
+  display:grid;grid-template-columns:46px minmax(0,1fr);
+  gap:clamp(14px,2.4vw,34px);align-items:start;
+  padding-block:clamp(20px,2.6vw,32px);border-top:1px solid var(--line);
+}
+.step:last-child{border-bottom:1px solid var(--line)}
+@media(min-width:860px){.step{grid-template-columns:46px minmax(0,1fr) 150px}}
+.step-n{
+  font-family:var(--serif);font-style:italic;font-size:2rem;
+  line-height:1;color:var(--blue);font-variant-numeric:tabular-nums;
+}
+.step h3{font-size:1.22rem;font-weight:700;letter-spacing:-.03em;margin:0 0 6px;line-height:1.18}
+.step p{margin:0;font-size:.94rem;line-height:1.58;color:var(--muted);max-width:52ch}
+.step .when{justify-self:start}
+@media(min-width:860px){.step .when{justify-self:end;text-align:right}}
+
+/* ---------- precio ---------- */
+
+.price-grid{display:grid;gap:clamp(20px,2.6vw,34px);align-items:start}
+@media(min-width:940px){.price-grid{grid-template-columns:1.3fr .7fr}}
+
+.card{
+  background:var(--surface);border:1px solid var(--line);border-radius:5px;
+  padding:clamp(24px,3.2vw,42px);box-shadow:var(--shadow);
+}
+.cur{display:inline-flex;gap:2px;border:1px solid var(--line);border-radius:2px;padding:2px;margin-bottom:22px}
+.cur button{
+  font-size:.64rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
+  padding:8px 14px;border-radius:1px;color:var(--muted);transition:.2s ease;
+}
+.cur button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+
+.amount{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.amount .fig{
+  font-size:clamp(3.4rem,7vw,5.4rem);font-weight:800;line-height:.86;
+  letter-spacing:-.05em;font-variant-numeric:tabular-nums;
+}
+.amount .cc{font-size:.7rem;font-weight:700;letter-spacing:.16em;color:var(--muted)}
+.amount .from{font-size:.66rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+
+.incl{margin:24px 0 0;padding:0;display:flex;flex-direction:column}
+.incl li{
+  list-style:none;display:flex;align-items:center;gap:12px;
+  padding:11px 0;border-bottom:1px solid var(--line-soft);font-size:.95rem;
+}
+.incl li:first-child{border-top:1px solid var(--line-soft)}
+.ck{
+  width:17px;height:17px;border-radius:50%;background:var(--acid);color:var(--on-acid);
+  display:grid;place-items:center;font-size:.5rem;font-weight:700;flex:none;
+}
+.terms{margin:20px 0 0;font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.card .btn-wide{margin-top:16px}
+
+.extras{background:transparent;box-shadow:none;border-style:dashed}
+.extras h3{font-size:1.22rem;font-weight:700;letter-spacing:-.03em;margin:0 0 4px}
+.extras > p{margin:0 0 16px;font-size:.9rem;line-height:1.55;color:var(--muted)}
+.extras dl{margin:0;display:flex;flex-direction:column}
+.ext-row{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:12px 0;border-top:1px solid var(--line-soft)}
+.ext-row dt{font-size:.94rem}
+.ext-row dd{margin:0;font-size:.9rem;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* ---------- dudas ---------- */
+
+.faq{max-width:860px}
+.faq details{border-top:1px solid var(--line)}
+.faq details:last-of-type{border-bottom:1px solid var(--line)}
+.faq summary{
+  list-style:none;cursor:pointer;padding:20px 40px 20px 0;position:relative;
+  font-size:1.08rem;font-weight:700;letter-spacing:-.024em;transition:color .2s ease;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:hover{color:var(--blue)}
+.faq summary::after{
+  content:"";position:absolute;right:6px;top:50%;
+  width:11px;height:1.5px;background:var(--ink);
+  transition:transform .3s var(--e);
+}
+.faq summary::before{
+  content:"";position:absolute;right:6px;top:50%;
+  width:11px;height:1.5px;background:var(--ink);
+  transform:rotate(90deg);transition:transform .3s var(--e);
+}
+.faq details[open] summary::before{transform:rotate(0)}
+.faq .ans{padding:0 40px 22px 0;margin:0;font-size:.96rem;line-height:1.65;color:var(--muted);max-width:60ch}
+
+/* ---------- cta ---------- */
+
+.cta{background:var(--band-bg);color:var(--band-fg);border:1px solid var(--band-line);border-radius:5px;overflow:hidden}
+.cta-in{padding:clamp(38px,6vw,72px) clamp(26px,5vw,64px);display:grid;gap:clamp(26px,4vw,48px);align-items:center}
+@media(min-width:860px){.cta-in{grid-template-columns:1.25fr .75fr}}
+.cta h2{
+  font-size:clamp(1.9rem,4.2vw,3.2rem);font-weight:700;letter-spacing:-.042em;
+  line-height:1.02;margin:14px 0 0;text-wrap:balance;
+}
+.cta h2 .serif{color:var(--acid);font-weight:400}
+.cta p{color:var(--band-dim);font-size:1rem;line-height:1.6;max-width:44ch;margin:16px 0 0}
+.cta .label{color:var(--band-note)}
+.cta-actions{display:flex;flex-direction:column;gap:11px}
+.cta-note{font-size:.72rem;color:var(--band-note);margin:4px 0 0;line-height:1.5}
+
+footer{padding-block:clamp(34px,5vw,56px)}
+.foot-in{
+  display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center;
+  padding-top:22px;border-top:1px solid var(--line);
+}
+
+/* ---------- revelado ---------- */
+
+.rv{opacity:0;transform:translateY(20px);transition:opacity .7s var(--e),transform .7s var(--e)}
+.rv.in{opacity:1;transform:none}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
+  .rv{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a class="mark" href="#top">
+      <svg viewBox="0 0 60 30" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="4.5">
+        <circle cx="16" cy="15" r="12.5"></circle><circle cx="44" cy="15" r="12.5"></circle>
+      </svg>
+      ETHROVS
+    </a>
+    <div class="nav-links">
+      <a href="#trabajo"  data-i18n data-es="Trabajo"   data-en="Work"></a>
+      <a href="#servicios" data-i18n data-es="Servicios" data-en="Services"></a>
+      <a href="#proceso"  data-i18n data-es="Proceso"   data-en="Process"></a>
+      <a href="#precio"   data-i18n data-es="Precio"    data-en="Pricing"></a>
+      <a href="#dudas"    data-i18n data-es="Dudas"     data-en="FAQ"></a>
+    </div>
+    <div class="lang" id="lang">
+      <button type="button" data-set="es" aria-pressed="true">ES</button>
+      <button type="button" data-set="en" aria-pressed="false">EN</button>
+    </div>
+    <a class="btn btn-solid btn-sm nav-cta" href="#contacto">
+      <span data-i18n data-es="Iniciar proyecto" data-en="Start a project"></span> <span class="arw">↗</span>
+    </a>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="top">
+  <div class="grid-rules" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+  <div class="wrap hero-in">
+    <div>
+      <div class="eyebrow">
+        <span class="dash"></span>
+        <p class="label" data-i18n
+           data-es="Estudio web bilingüe · Laredo / Nuevo Laredo"
+           data-en="Bilingual web studio · Laredo / Nuevo Laredo"></p>
+      </div>
+
+      <h1>
+        <span data-i18n data-es="Páginas web que" data-en="Websites that"></span>
+        <span class="serif" data-i18n data-es="mueven negocios." data-en="move businesses."></span>
+      </h1>
+
+      <p class="lead" data-i18n
+         data-es="Diseño estratégico, desarrollo rápido y tecnología inteligente para negocios que están listos para crecer."
+         data-en="Strategic design, fast development and smart technology for businesses ready to grow."></p>
+
+      <div class="hero-cta">
+        <a class="btn btn-solid" href="#contacto">
+          <span data-i18n data-es="Crear mi página" data-en="Build my site"></span> <span class="arw">↗</span>
+        </a>
+        <a class="btn btn-ghost" href="#trabajo">
+          <span data-i18n data-es="Ver nuestro trabajo" data-en="See our work"></span> <span>↓</span>
+        </a>
+      </div>
+
+      <div class="proof">
+        <div><b>24 h</b><p class="label" data-i18n data-es="Entrega mínima" data-en="Fastest delivery"></p></div>
+        <div><b>4</b><p class="label" data-i18n data-es="Sitios en vivo" data-en="Sites live"></p></div>
+        <div><b>ES · EN</b><p class="label" data-i18n data-es="Bilingüe" data-en="Bilingual"></p></div>
+        <div><b data-price="$200|$3,900">$200</b><p class="label"><span data-i18n data-es="Desde," data-en="From,"></span> <span data-price="USD|MXN">USD</span></p></div>
+      </div>
+    </div>
+
+    <div class="deck-col">
+      <div class="deck" id="deck">
+        <figure data-pos="0" style="background-image:var(--shot-beck)"  role="img" aria-label="Sitio de BECK, medicina estética en Nuevo Laredo"></figure>
+        <figure data-pos="1" style="background-image:var(--shot-exc)"   role="img" aria-label="Sitio de Excessive Detailing, detallado automotriz en Dallas–Fort Worth"></figure>
+        <figure data-pos="2" style="background-image:var(--shot-costa)" role="img" aria-label="Sitio de Costa Grill, restaurante de mariscos en Nuevo Laredo"></figure>
+        <figure data-pos="3" style="background-image:var(--shot-vsr)"   role="img" aria-label="Sitio de VSR 444, tienda de edición limitada"></figure>
+      </div>
+      <div class="deck-meta">
+        <div>
+          <p class="label" id="deck-cat">Medicina estética · Nuevo Laredo</p>
+          <p class="deck-name" id="deck-name">BECK</p>
+        </div>
+        <div class="deck-dots" id="deck-dots" role="tablist" aria-label="Proyectos"></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ TRABAJO ============ -->
+<section class="sec wrap" id="trabajo">
+  <div class="sec-head">
+    <h2 data-i18n
+        data-es="Diseñado para verse bien. Construido para funcionar."
+        data-en="Designed to look right. Built to work."></h2>
+    <p class="label" data-i18n data-es="Trabajo seleccionado · 2026" data-en="Selected work · 2026"></p>
+  </div>
+
+  <div class="work-grid">
+    <a class="case rv" href="https://costagrillmx.com/" target="_blank" rel="noopener">
+      <div class="case-shot">
+        <div class="img" style="background-image:var(--shot-costa)" role="img" aria-label="Portada del sitio de Costa Grill"></div>
+        <span class="go" aria-hidden="true">↗</span>
+      </div>
+      <div class="case-bar"><span class="idx">01</span><p class="label" data-i18n data-es="Restaurante · Nuevo Laredo" data-en="Restaurant · Nuevo Laredo"></p></div>
+      <h3>Costa Grill</h3>
+      <p data-i18n
+         data-es="Una experiencia cálida y directa para un restaurante de mariscos, optimizada para convertir visitas en reservaciones."
+         data-en="A warm, direct experience for a seafood restaurant, tuned to turn visits into reservations."></p>
+      <span class="live"><span data-i18n data-es="Ver en vivo" data-en="View live"></span> <span class="arw">↗</span></span>
+    </a>
+
+    <a class="case rv" href="https://vsr444.com/" target="_blank" rel="noopener">
+      <div class="case-shot">
+        <div class="img" style="background-image:var(--shot-vsr)" role="img" aria-label="Portada del sitio de VSR 444"></div>
+        <span class="go" aria-hidden="true">↗</span>
+      </div>
+      <div class="case-bar"><span class="idx">02</span><p class="label" data-i18n data-es="Edición limitada · H-Town" data-en="Limited release · H-Town"></p></div>
+      <h3>VSR 444</h3>
+      <p data-i18n
+         data-es="Una tienda editorial de edición limitada que une moda, música y una identidad visual construida desde la presión."
+         data-en="A limited-release editorial store joining fashion, music and an identity built under pressure."></p>
+      <span class="live"><span data-i18n data-es="Ver en vivo" data-en="View live"></span> <span class="arw">↗</span></span>
+    </a>
+
+    <a class="case rv" href="https://beckcentrodebelleza.com/" target="_blank" rel="noopener">
+      <div class="case-shot">
+        <div class="img" style="background-image:var(--shot-beck)" role="img" aria-label="Portada del sitio de BECK"></div>
+        <span class="go" aria-hidden="true">↗</span>
+      </div>
+      <div class="case-bar"><span class="idx">03</span><p class="label" data-i18n data-es="Medicina estética · Nuevo Laredo" data-en="Aesthetic medicine · Nuevo Laredo"></p></div>
+      <h3>BECK</h3>
+      <p data-i18n
+         data-es="Una experiencia editorial y refinada para presentar tratamientos, dar confianza médica y conectar con nuevos pacientes."
+         data-en="A refined editorial experience that presents treatments, builds medical trust and reaches new patients."></p>
+      <span class="live"><span data-i18n data-es="Ver en vivo" data-en="View live"></span> <span class="arw">↗</span></span>
+    </a>
+
+    <a class="case rv" href="https://excessivedetailing.com/" target="_blank" rel="noopener">
+      <div class="case-shot">
+        <div class="img" style="background-image:var(--shot-exc)" role="img" aria-label="Portada del sitio de Excessive Detailing"></div>
+        <span class="go" aria-hidden="true">↗</span>
+      </div>
+      <div class="case-bar"><span class="idx">04</span><p class="label" data-i18n data-es="Detallado móvil · DFW" data-en="Mobile detailing · DFW"></p></div>
+      <h3>Excessive Detailing</h3>
+      <p data-i18n
+         data-es="Una experiencia bilingüe para detallado automotriz premium, diseñada para mostrar resultados y convertir visitas en citas."
+         data-en="A bilingual experience for premium auto detailing, built to show results and turn visits into bookings."></p>
+      <span class="live"><span data-i18n data-es="Ver en vivo" data-en="View live"></span> <span class="arw">↗</span></span>
+    </a>
+  </div>
+</section>
+
+<!-- ============ SERVICIOS ============ -->
+<section class="sec wrap" id="servicios">
+  <div class="sec-head">
+    <h2 data-i18n
+        data-es="Todo lo necesario para lanzar con fuerza."
+        data-en="Everything you need to launch with force."></h2>
+    <p class="label" data-i18n data-es="Lo que hacemos" data-en="What we do"></p>
+  </div>
+
+  <div class="svc rv">
+    <article>
+      <h3 data-i18n data-es="Diseño" data-en="Design"></h3>
+      <p data-i18n
+         data-es="Dirección visual, estructura y textos para que tu negocio se sienta confiable en el primer segundo."
+         data-en="Visual direction, structure and copy so your business feels trustworthy in the first second."></p>
+      <ul>
+        <li data-i18n data-es="Identidad y paleta"   data-en="Identity and palette"></li>
+        <li data-i18n data-es="Jerarquía y textos"   data-en="Hierarchy and copy"></li>
+        <li data-i18n data-es="Diseño móvil primero" data-en="Mobile-first layout"></li>
+      </ul>
+    </article>
+    <article>
+      <h3 data-i18n data-es="Desarrollo" data-en="Development"></h3>
+      <p data-i18n
+         data-es="Sitios rápidos que cargan bien en cualquier teléfono y quedan listos para crecer contigo."
+         data-en="Fast sites that load well on any phone and are ready to grow with you."></p>
+      <ul>
+        <li data-i18n data-es="Carga en segundos"        data-en="Loads in seconds"></li>
+        <li data-i18n data-es="WhatsApp, mapa y llamada" data-en="WhatsApp, map and call"></li>
+        <li data-i18n data-es="Tu dominio conectado"     data-en="Your domain connected"></li>
+      </ul>
+    </article>
+    <article>
+      <h3 data-i18n data-es="Crecimiento" data-en="Growth"></h3>
+      <p data-i18n
+         data-es="SEO básico, analítica y automatizaciones para que la página trabaje también cuando tú no estás."
+         data-en="Basic SEO, analytics and automation so the site works even when you don't."></p>
+      <ul>
+        <li data-i18n data-es="Google Business"        data-en="Google Business"></li>
+        <li data-i18n data-es="Analítica de visitas"   data-en="Visitor analytics"></li>
+        <li data-i18n data-es="Respuestas automáticas" data-en="Automated replies"></li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+<!-- ============ PROCESO ============ -->
+<section class="sec wrap" id="proceso">
+  <div class="sec-head">
+    <h2 data-i18n
+        data-es="De idea a internet en tres movimientos."
+        data-en="From idea to internet in three moves."></h2>
+    <p class="label" data-i18n data-es="Proceso express" data-en="Express process"></p>
+  </div>
+
+  <div class="steps">
+    <div class="step rv">
+      <span class="step-n">1</span>
+      <div>
+        <h3 data-i18n data-es="Nos mandas tu contenido" data-en="You send your content"></h3>
+        <p data-i18n
+           data-es="Tu logo, fotos, servicios y lo esencial del negocio. Si algo te falta, te decimos exactamente qué necesitamos y cómo conseguirlo."
+           data-en="Your logo, photos, services and the essentials. If something is missing, we tell you exactly what we need and how to get it."></p>
+      </div>
+      <p class="label when" data-i18n data-es="Día 0 · 15 min" data-en="Day 0 · 15 min"></p>
+    </div>
+    <div class="step rv">
+      <span class="step-n">2</span>
+      <div>
+        <h3 data-i18n data-es="Diseñamos y construimos" data-en="We design and build"></h3>
+        <p data-i18n
+           data-es="Definimos una dirección visual clara y desarrollamos la página completa en una sola producción, sin pasarnos la pelota."
+           data-en="We set a clear visual direction and build the whole page in a single production run, with no back-and-forth."></p>
+      </div>
+      <p class="label when" data-i18n data-es="Mismo día" data-en="Same day"></p>
+    </div>
+    <div class="step rv">
+      <span class="step-n">3</span>
+      <div>
+        <h3 data-i18n data-es="Revisas y publicamos" data-en="You review, we publish"></h3>
+        <p data-i18n
+           data-es="Haces una ronda de cambios, conectamos tu dominio y te entregamos el sitio en vivo, listo para recibir clientes."
+           data-en="You get one round of changes, we connect your domain and hand over the live site, ready for customers."></p>
+      </div>
+      <p class="label when" data-i18n data-es="Antes de 24 h" data-en="Under 24 h"></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRECIO ============ -->
+<section class="sec wrap" id="precio">
+  <div class="sec-head">
+    <h2>Website Express <span class="serif">24 h.</span></h2>
+    <p class="label" data-i18n data-es="Oferta de lanzamiento" data-en="Launch offer"></p>
+  </div>
+
+  <div class="price-grid">
+    <div class="card rv">
+      <div class="cur" id="cur">
+        <button type="button" data-cur="usd" aria-pressed="true">USA · USD</button>
+        <button type="button" data-cur="mxn" aria-pressed="false">México · MXN</button>
+      </div>
+
+      <div class="amount">
+        <span class="from" data-i18n data-es="Desde" data-en="From"></span>
+        <span class="fig" data-price="$200|$3,900">$200</span>
+        <span class="cc" data-price="USD|MXN">USD</span>
+      </div>
+
+      <p style="margin:18px 0 0;color:var(--muted);font-size:1rem;line-height:1.58;max-width:48ch" data-i18n
+         data-es="Una página profesional de hasta seis secciones, lista para presentar tu negocio y empezar a recibir clientes."
+         data-en="A professional page of up to six sections, ready to present your business and start bringing in customers."></p>
+
+      <ul class="incl">
+        <li><span class="ck" aria-hidden="true">✓</span><span data-i18n data-es="Diseño personalizado, no plantilla"  data-en="Custom design, not a template"></span></li>
+        <li><span class="ck" aria-hidden="true">✓</span><span data-i18n data-es="Versión móvil optimizada"            data-en="Optimized mobile version"></span></li>
+        <li><span class="ck" aria-hidden="true">✓</span><span data-i18n data-es="Botones de llamada, mapa y WhatsApp" data-en="Call, map and WhatsApp buttons"></span></li>
+        <li><span class="ck" aria-hidden="true">✓</span><span data-i18n data-es="SEO básico y conexión de dominio"    data-en="Basic SEO and domain setup"></span></li>
+        <li><span class="ck" aria-hidden="true">✓</span><span data-i18n data-es="Una ronda de cambios"                data-en="One round of changes"></span></li>
+      </ul>
+
+      <p class="terms" data-i18n
+         data-es="50% para comenzar · 50% antes de publicar"
+         data-en="50% to start · 50% before we publish"></p>
+
+      <a class="btn btn-acid btn-wide" href="https://wa.me/19562513072?text=Hola%20ETHROVS%2C%20quiero%20reservar%20mi%20p%C3%A1gina%20Express%2024H" target="_blank" rel="noopener">
+        <span data-i18n data-es="Reservar mi página" data-en="Book my page"></span> <span class="arw">↗</span>
+      </a>
+    </div>
+
+    <div class="card extras rv">
+      <h3 data-i18n data-es="Extras" data-en="Add-ons"></h3>
+      <p data-i18n
+         data-es="Agrégalos cuando los necesites. Se cobran una sola vez y se suman al total antes de empezar."
+         data-en="Add them when you need them. Charged once and added to the total before we start."></p>
+      <dl>
+        <div class="ext-row"><dt data-i18n data-es="Cambios generales adicionales" data-en="Extra rounds of changes"></dt><dd data-price="+$20|+$390">+$20</dd></div>
+        <div class="ext-row"><dt data-i18n data-es="Versión bilingüe ES / EN"      data-en="Bilingual ES / EN version"></dt><dd data-price="+$30|+$590">+$30</dd></div>
+        <div class="ext-row"><dt data-i18n data-es="Perfil de Google Business"     data-en="Google Business profile"></dt>  <dd data-price="+$35|+$690">+$35</dd></div>
+        <div class="ext-row"><dt data-i18n data-es="Página adicional"              data-en="Additional page"></dt>          <dd data-price="+$25|+$490">+$25</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DUDAS ============ -->
+<section class="sec wrap" id="dudas">
+  <div class="sec-head">
+    <h2 data-i18n data-es="Las dudas que siempre nos hacen." data-en="The questions we always get."></h2>
+    <p class="label" data-i18n data-es="Antes de escribirnos" data-en="Before you write"></p>
+  </div>
+
+  <div class="faq rv">
+    <details>
+      <summary data-i18n data-es="¿De verdad en 24 horas?" data-en="Really in 24 hours?"></summary>
+      <p class="ans" data-i18n
+         data-es="Sí, siempre que tengamos tu contenido completo desde el inicio: logo, fotos, servicios y textos. El reloj empieza cuando recibimos todo, no cuando pagas. Si falta material, te avisamos el mismo día."
+         data-en="Yes, as long as we have all your content up front: logo, photos, services and copy. The clock starts when we receive everything, not when you pay. If something is missing, we tell you the same day."></p>
+    </details>
+    <details>
+      <summary data-i18n data-es="No tengo logo ni fotos. ¿Puedo empezar?" data-en="I have no logo or photos. Can I still start?"></summary>
+      <p class="ans" data-i18n
+         data-es="Sí. Podemos crear un logotipo sencillo y generar imágenes a la medida de tu marca. Nos lo dices al escribir y lo ajustamos en la propuesta antes de cobrarte nada."
+         data-en="Yes. We can create a simple wordmark and generate custom imagery for your brand. Tell us when you write and we adjust the proposal before charging anything."></p>
+    </details>
+    <details>
+      <summary data-i18n data-es="¿Qué pasa después de publicar?" data-en="What happens after we publish?"></summary>
+      <p class="ans" data-i18n
+         data-es="El sitio es tuyo: dominio, contenido y acceso. Te dejamos publicado y funcionando. Si más adelante quieres cambios o secciones nuevas, se cotizan aparte, sin mensualidad obligatoria."
+         data-en="The site is yours: domain, content and access. We hand it over live and working. If you later want changes or new sections, we quote them separately — no mandatory monthly fee."></p>
+    </details>
+    <details>
+      <summary data-i18n data-es="¿Trabajan de los dos lados de la frontera?" data-en="Do you work on both sides of the border?"></summary>
+      <p class="ans" data-i18n
+         data-es="Sí. Atendemos Laredo, Nuevo Laredo y el resto de Texas y México. Cobramos en dólares o en pesos, y el sitio puede quedar en español, en inglés o en los dos idiomas."
+         data-en="Yes. We serve Laredo, Nuevo Laredo and the rest of Texas and Mexico. We charge in dollars or pesos, and your site can be in Spanish, English or both."></p>
+    </details>
+    <details>
+      <summary data-i18n data-es="¿Y si no me gusta el diseño?" data-en="What if I don't like the design?"></summary>
+      <p class="ans" data-i18n
+         data-es="Tienes una ronda de cambios incluida y la usamos para afinar lo que haga falta. Como solo pagas la mitad al inicio, no liberas el resto hasta que el sitio te convenza."
+         data-en="You get one round of changes included and we use it to fix whatever needs fixing. Since you only pay half up front, you don't release the rest until the site convinces you."></p>
+    </details>
+  </div>
+</section>
+
+<!-- ============ CONTACTO ============ -->
+<section class="sec wrap" id="contacto">
+  <div class="cta rv">
+    <div class="cta-in">
+      <div>
+        <p class="label" data-i18n
+           data-es="Oferta de lanzamiento · Website Express 24 h"
+           data-en="Launch offer · Website Express 24 h"></p>
+        <h2>
+          <span data-i18n data-es="Hagamos algo que la gente" data-en="Let's make something people"></span>
+          <span class="serif" data-i18n data-es="recuerde." data-en="remember."></span>
+        </h2>
+        <p data-i18n
+           data-es="Cuéntanos qué vendes y qué necesitas. Te respondemos con una propuesta clara, sin llamadas eternas ni precios escondidos."
+           data-en="Tell us what you sell and what you need. We reply with a clear proposal, no endless calls and no hidden pricing."></p>
+      </div>
+      <div class="cta-actions">
+        <a class="btn btn-acid btn-wide" href="https://wa.me/19562513072?text=Hola%20ETHROVS%2C%20quiero%20una%20p%C3%A1gina%20web" target="_blank" rel="noopener">
+          <span data-i18n data-es="Hablar por WhatsApp" data-en="Talk on WhatsApp"></span> <span class="arw">↗</span>
+        </a>
+        <a class="btn btn-line btn-wide" href="mailto:ethernaldevops@gmail.com?subject=Quiero%20una%20p%C3%A1gina%20web">
+          <span data-i18n data-es="Enviar un correo" data-en="Send an email"></span> <span class="arw">↗</span>
+        </a>
+        <p class="cta-note" data-i18n
+           data-es="Respuesta el mismo día · 50% para comenzar, 50% antes de publicar."
+           data-en="Same-day reply · 50% to start, 50% before we publish."></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="wrap">
+  <div class="foot-in">
+    <p class="label">© 2026 ETHROVS · Laredo, TX · Nuevo Laredo, MX</p>
+    <p class="label" data-i18n data-es="Energía digital en movimiento" data-en="Digital energy in motion"></p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- idioma ---------- */
+  var lang = "es";
+  var nodes = document.querySelectorAll("[data-i18n]");
+
+  function applyLang(next){
+    lang = next;
+    document.documentElement.lang = next;
+    for (var i = 0; i < nodes.length; i++){
+      var v = nodes[i].getAttribute("data-" + next);
+      if (v !== null) nodes[i].textContent = v;
+    }
+    setDeckMeta();
+  }
+
+  var langBox = document.getElementById("lang");
+  langBox.addEventListener("click", function(e){
+    var b = e.target.closest("button[data-set]");
+    if (!b || b.getAttribute("data-set") === lang) return;
+    var next = b.getAttribute("data-set");
+    langBox.querySelectorAll("button").forEach(function(x){
+      x.setAttribute("aria-pressed", String(x.getAttribute("data-set") === next));
+    });
+    applyLang(next);
+  });
+
+  /* ---------- moneda ---------- */
+  var priceNodes = document.querySelectorAll("[data-price]");
+  var curBox = document.getElementById("cur");
+
+  function applyCur(which){
+    var idx = which === "mxn" ? 1 : 0;
+    priceNodes.forEach(function(n){
+      n.textContent = n.getAttribute("data-price").split("|")[idx];
+    });
+    curBox.querySelectorAll("button").forEach(function(x){
+      x.setAttribute("aria-pressed", String(x.getAttribute("data-cur") === which));
+    });
+  }
+  curBox.addEventListener("click", function(e){
+    var b = e.target.closest("button[data-cur]");
+    if (b) applyCur(b.getAttribute("data-cur"));
+  });
+
+  /* ---------- deck ---------- */
+  var deck   = document.getElementById("deck");
+  var cards  = Array.prototype.slice.call(deck.querySelectorAll("figure"));
+  var dots   = document.getElementById("deck-dots");
+  var nameEl = document.getElementById("deck-name");
+  var catEl  = document.getElementById("deck-cat");
+
+  var meta = [
+    {n:"BECK",                es:"Medicina estética · Nuevo Laredo",  en:"Aesthetic medicine · Nuevo Laredo"},
+    {n:"Excessive Detailing", es:"Detallado móvil · Dallas–Fort Worth",en:"Mobile detailing · Dallas–Fort Worth"},
+    {n:"Costa Grill",         es:"Restaurante · Nuevo Laredo",        en:"Restaurant · Nuevo Laredo"},
+    {n:"VSR 444",             es:"Edición limitada · H-Town",         en:"Limited release · H-Town"}
+  ];
+
+  var active = 0, timer = null;
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  function setDeckMeta(){
+    nameEl.textContent = meta[active].n;
+    catEl.textContent  = meta[active][lang];
+  }
+
+  meta.forEach(function(m, i){
+    var b = document.createElement("button");
+    b.type = "button";
+    b.setAttribute("aria-label", "Ver " + m.n);
+    b.setAttribute("aria-current", i === 0 ? "true" : "false");
+    b.addEventListener("click", function(){ go(i); restart(); });
+    dots.appendChild(b);
+  });
+
+  function go(i){
+    active = (i + cards.length) % cards.length;
+    cards.forEach(function(c, idx){
+      c.setAttribute("data-pos", String((idx - active + cards.length) % cards.length));
+    });
+    Array.prototype.forEach.call(dots.children, function(d, idx){
+      d.setAttribute("aria-current", idx === active ? "true" : "false");
+    });
+    setDeckMeta();
+  }
+
+  function restart(){
+    if (timer) clearInterval(timer);
+    if (reduced.matches) return;
+    timer = setInterval(function(){
+      if (!document.hidden) go(active + 1);
+    }, 4200);
+  }
+
+  deck.addEventListener("pointerenter", function(){ if (timer) clearInterval(timer); });
+  deck.addEventListener("pointerleave", restart);
+  if (reduced.addEventListener) reduced.addEventListener("change", restart);
+
+  go(0);
+  restart();
+  applyLang("es");
+
+  /* ---------- revelado ---------- */
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); }
+    });
+  }, {rootMargin:"0px 0px -8% 0px", threshold:.1});
+  document.querySelectorAll(".rv").forEach(function(el){ io.observe(el); });
+
+})();
+</script>
+
+</body>
+</html>

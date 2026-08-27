@@ -62,10 +62,7 @@ button { font-family: inherit; color: inherit; background: none; border: 0; curs
 .nav { position: sticky; top: 0; z-index: 60; background: color-mix(in srgb, var(--paper) 86%, transparent); backdrop-filter: saturate(150%) blur(14px); -webkit-backdrop-filter: saturate(150%) blur(14px); border-bottom: 1px solid var(--line-soft); }
 .nav-in { display: flex; align-items: center; gap: clamp(12px, 3vw, 44px); height: 68px; }
 .mark { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: 0.11em; font-size: 0.9rem; }
-.mark-symbol { width: 34px; height: 17px; display: inline-block; position: relative; flex: none; }
-.mark-symbol::before, .mark-symbol::after { content: ""; position: absolute; top: 0; width: 17px; height: 17px; border: 2.5px solid currentColor; border-radius: 50%; }
-.mark-symbol::before { left: 0; }
-.mark-symbol::after { right: 0; }
+.mark-symbol { width: 38px; height: 20px; display: inline-block; flex: none; background: url("/assets/ethro-mark.png") center / contain no-repeat; }
 .nav-links { display: none; gap: clamp(14px, 2.2vw, 28px); margin-left: auto; }
 .nav-links a { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); padding: 6px 0; position: relative; transition: color 0.18s ease; }
 .nav-links a::after { content: ""; position: absolute; left: 0; right: 100%; bottom: 0; height: 1.5px; background: var(--ink); transition: right 0.28s var(--e); }
@@ -74,7 +71,7 @@ button { font-family: inherit; color: inherit; background: none; border: 0; curs
 .lang { display: flex; gap: 2px; margin-left: auto; border: 1px solid var(--line); border-radius: 2px; padding: 2px; }
 .lang button { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em; padding: 6px 9px; border-radius: 1px; color: var(--muted); transition: 0.2s ease; }
 .lang button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
-.nav-cta { display: none; }
+.nav .nav-cta { display: none; }
 
 .btn { display: inline-flex; align-items: center; gap: 10px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; padding: 13px 20px; border: 1px solid transparent; border-radius: 2px; cursor: pointer; transition: transform 0.2s var(--e), background 0.2s ease, color 0.2s ease, border-color 0.2s ease; }
 .btn .arw { transition: transform 0.25s var(--e); }
@@ -196,11 +193,10 @@ h1 .serif { display: block; color: var(--blue); font-size: 1.04em; line-height: 
 footer { padding-block: clamp(34px, 5vw, 56px); }
 .foot-in { display: flex; flex-wrap: wrap; gap: 14px; justify-content: space-between; align-items: center; padding-top: 22px; border-top: 1px solid var(--line); }
 
-.rv { opacity: 0; transform: translateY(20px); transition: opacity 0.7s var(--e), transform 0.7s var(--e); }
-.rv.in { opacity: 1; transform: none; }
+.rv { opacity: 1; transform: none; }
 
 @media (min-width: 620px) {
-  .nav-cta { display: inline-flex; }
+  .nav .nav-cta { display: inline-flex; }
   .proof { grid-template-columns: repeat(4, 1fr); }
 }
 @media (min-width: 800px) {

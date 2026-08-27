@@ -123,8 +123,27 @@ export default function Home() {
   useEffect(() => {
     const savedLanguage = window.localStorage.getItem("ethrovs-language");
     const savedMarket = window.localStorage.getItem("ethrovs-market");
-    if (savedLanguage === "es" || savedLanguage === "en") setLanguage(savedLanguage);
-    else if (window.navigator.language.toLowerCase().startsWith("en")) setLanguage("en");
+    const languageWasChosen = window.localStorage.getItem("ethrovs-language-manual") === "1";
+    const fallbackLanguage: Language = window.navigator.language.toLowerCase().startsWith("en") ? "en" : "es";
+
+    if (languageWasChosen && (savedLanguage === "es" || savedLanguage === "en")) {
+      setLanguage(savedLanguage);
+    } else {
+      setLanguage(fallbackLanguage);
+      const controller = new AbortController();
+      fetch("/api/locale", { cache: "no-store", signal: controller.signal })
+        .then((response) => response.ok ? response.json() : Promise.reject(new Error("Locale unavailable")))
+        .then((data: { language?: Language }) => {
+          if (data.language === "es" || data.language === "en") setLanguage(data.language);
+        })
+        .catch((error: unknown) => {
+          if (error instanceof DOMException && error.name === "AbortError") return;
+          setLanguage(fallbackLanguage);
+        });
+
+      if (savedMarket === "us" || savedMarket === "mx") setMarket(savedMarket);
+      return () => controller.abort();
+    }
     if (savedMarket === "us" || savedMarket === "mx") setMarket(savedMarket);
   }, []);
 
@@ -135,21 +154,19 @@ export default function Home() {
     const timer = window.setInterval(() => setActiveProject((value) => (value + 1) % deckOrder.length), 4200);
     return () => window.clearInterval(timer);
   }, [deckPaused]);
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => entries.forEach((entry) => {
-      if (entry.isIntersecting) { entry.target.classList.add("in"); observer.unobserve(entry.target); }
-    }), { rootMargin: "0px 0px -8% 0px", threshold: 0.1 });
-    document.querySelectorAll(".rv").forEach((element) => observer.observe(element));
-    return () => observer.disconnect();
-  }, []);
 
   const deckPositions = useMemo(() => deckOrder.map((_, index) => (index - activeProject + deckOrder.length) % deckOrder.length), [activeProject]);
+
+  function chooseLanguage(nextLanguage: Language) {
+    window.localStorage.setItem("ethrovs-language-manual", "1");
+    setLanguage(nextLanguage);
+  }
 
   return <>
     <nav className="nav" aria-label="Main navigation"><div className="wrap nav-in">
       <a className="mark" href="#top" aria-label="ETHROVS home"><span className="mark-symbol" aria-hidden="true" />ETHROVS</a>
       <div className="nav-links"><a href="#trabajo">{c.nav.work}</a><a href="#servicios">{c.nav.services}</a><a href="#proceso">{c.nav.process}</a><a href="#precio">{c.nav.pricing}</a><a href="#dudas">{c.nav.faq}</a></div>
-      <div className="lang" role="group" aria-label="Language">{(["es", "en"] as const).map((option) => <button key={option} type="button" aria-pressed={language === option} onClick={() => setLanguage(option)}>{option.toUpperCase()}</button>)}</div>
+      <div className="lang" role="group" aria-label="Language">{(["es", "en"] as const).map((option) => <button key={option} type="button" aria-pressed={language === option} onClick={() => chooseLanguage(option)}>{option.toUpperCase()}</button>)}</div>
       <a className="btn btn-solid btn-sm nav-cta" href="#contacto">{c.nav.contact} <span className="arw">↗</span></a>
     </div></nav>
 

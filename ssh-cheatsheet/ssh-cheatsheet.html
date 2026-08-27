@@ -1,0 +1,136 @@
+<meta charset="utf-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1500px; }
+  html { background: #0d2137; }
+  body {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    background: linear-gradient(135deg, #0d1117 0%, #101b2d 55%, #0d2137 100%);
+    color: #e6edf3;
+    padding: 48px 56px 40px;
+  }
+  .header { display: flex; align-items: center; gap: 22px; margin-bottom: 10px; }
+  .logo {
+    width: 74px; height: 74px; border-radius: 18px; flex: none;
+    background: linear-gradient(135deg, #16a34a, #22d3ee);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 40px; box-shadow: 0 8px 24px rgba(34, 211, 238, .25);
+  }
+  h1 { font-size: 42px; font-weight: 800; letter-spacing: -0.5px; }
+  h1 span { background: linear-gradient(90deg, #4ade80, #22d3ee); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .subtitle { color: #8b98a9; font-size: 17px; margin-top: 4px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 30px; }
+  .card {
+    background: rgba(22, 30, 42, .88);
+    border: 1px solid #263140;
+    border-radius: 16px;
+    padding: 22px 24px 18px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
+  }
+  .card h2 {
+    font-size: 19px; font-weight: 700; margin-bottom: 14px;
+    display: flex; align-items: center; gap: 10px; letter-spacing: .2px;
+  }
+  .card h2 .dot { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+  .c1 .dot { background: #4ade80; } .c1 h2 { color: #4ade80; }
+  .c2 .dot { background: #22d3ee; } .c2 h2 { color: #22d3ee; }
+  .c3 .dot { background: #fbbf24; } .c3 h2 { color: #fbbf24; }
+  .c4 .dot { background: #f472b6; } .c4 h2 { color: #f472b6; }
+  .c5 .dot { background: #a78bfa; } .c5 h2 { color: #a78bfa; }
+  .c6 .dot { background: #fb923c; } .c6 h2 { color: #fb923c; }
+  .cmd { margin-bottom: 11px; }
+  .cmd:last-child { margin-bottom: 0; }
+  .cmd code {
+    display: block;
+    font-family: 'Cascadia Code', 'Fira Code', 'JetBrains Mono', Consolas, monospace;
+    font-size: 14.5px;
+    background: #0b0f16;
+    border: 1px solid #1f2937;
+    border-radius: 8px;
+    padding: 7px 12px;
+    color: #d2dae4;
+    white-space: nowrap; overflow: hidden;
+  }
+  .cmd code b { color: #7ee787; font-weight: 600; }
+  .cmd code i { color: #79c0ff; font-style: normal; }
+  .cmd .desc { font-size: 13.5px; color: #8b98a9; margin-top: 4px; padding-left: 2px; }
+  .footer {
+    margin-top: 26px; display: flex; justify-content: space-between; align-items: center;
+    color: #6b7789; font-size: 14px; border-top: 1px solid #263140; padding-top: 16px;
+  }
+  .footer .tip b { color: #4ade80; }
+</style>
+
+<div class="header">
+  <div class="logo">🌮</div>
+  <div>
+    <h1>Comandos <span>SSH</span> — Cheat Sheet</h1>
+    <div class="subtitle">Los comandos esenciales para conectarte, copiar archivos, crear túneles y administrar servidores remotos</div>
+  </div>
+</div>
+
+<div class="grid">
+
+  <div class="card c1">
+    <h2><span class="dot"></span>Conexión básica</h2>
+    <div class="cmd"><code><b>ssh</b> usuario@servidor</code><div class="desc">Conectarse a un servidor remoto</div></div>
+    <div class="cmd"><code><b>ssh</b> -p <i>2222</i> usuario@servidor</code><div class="desc">Conectarse por un puerto distinto al 22</div></div>
+    <div class="cmd"><code><b>ssh</b> -i <i>~/.ssh/mi_clave</i> usuario@servidor</code><div class="desc">Conectarse usando una clave privada específica</div></div>
+    <div class="cmd"><code><b>ssh</b> usuario@servidor "<i>comando</i>"</code><div class="desc">Ejecutar un comando remoto sin abrir sesión interactiva</div></div>
+    <div class="cmd"><code><b>ssh</b> -v usuario@servidor</code><div class="desc">Modo verbose para depurar problemas de conexión (-vv, -vvv)</div></div>
+    <div class="cmd"><code><b>exit</b></code><div class="desc">Cerrar la sesión SSH actual</div></div>
+  </div>
+
+  <div class="card c2">
+    <h2><span class="dot"></span>Claves SSH</h2>
+    <div class="cmd"><code><b>ssh-keygen</b> -t ed25519 -C "<i>tu@email.com</i>"</code><div class="desc">Generar un par de claves moderno (recomendado)</div></div>
+    <div class="cmd"><code><b>ssh-keygen</b> -t rsa -b 4096</code><div class="desc">Generar clave RSA de 4096 bits (compatibilidad)</div></div>
+    <div class="cmd"><code><b>ssh-copy-id</b> usuario@servidor</code><div class="desc">Copiar tu clave pública al servidor (login sin contraseña)</div></div>
+    <div class="cmd"><code><b>cat</b> ~/.ssh/id_ed25519.pub</code><div class="desc">Ver tu clave pública para pegarla donde haga falta</div></div>
+    <div class="cmd"><code><b>ssh-add</b> ~/.ssh/mi_clave</code><div class="desc">Añadir la clave al agente SSH</div></div>
+    <div class="cmd"><code><b>ssh-add</b> -l</code><div class="desc">Listar las claves cargadas en el agente</div></div>
+  </div>
+
+  <div class="card c3">
+    <h2><span class="dot"></span>Copiar archivos · scp / sftp / rsync</h2>
+    <div class="cmd"><code><b>scp</b> archivo.txt usuario@servidor:<i>/ruta/</i></code><div class="desc">Subir un archivo al servidor</div></div>
+    <div class="cmd"><code><b>scp</b> usuario@servidor:<i>/ruta/archivo.txt</i> .</code><div class="desc">Descargar un archivo del servidor</div></div>
+    <div class="cmd"><code><b>scp</b> -r carpeta/ usuario@servidor:<i>/ruta/</i></code><div class="desc">Copiar una carpeta completa (recursivo)</div></div>
+    <div class="cmd"><code><b>rsync</b> -avz carpeta/ usuario@servidor:<i>/ruta/</i></code><div class="desc">Sincronizar carpetas (rápido, solo copia cambios)</div></div>
+    <div class="cmd"><code><b>sftp</b> usuario@servidor</code><div class="desc">Sesión interactiva de transferencia (get, put, ls, cd)</div></div>
+  </div>
+
+  <div class="card c4">
+    <h2><span class="dot"></span>Túneles y port forwarding</h2>
+    <div class="cmd"><code><b>ssh</b> -L <i>8080:localhost:80</i> usuario@servidor</code><div class="desc">Túnel local: tu puerto 8080 → puerto 80 del servidor</div></div>
+    <div class="cmd"><code><b>ssh</b> -R <i>9000:localhost:3000</i> usuario@servidor</code><div class="desc">Túnel remoto: expone tu puerto 3000 en el servidor</div></div>
+    <div class="cmd"><code><b>ssh</b> -D <i>1080</i> usuario@servidor</code><div class="desc">Proxy SOCKS dinámico (navegar a través del servidor)</div></div>
+    <div class="cmd"><code><b>ssh</b> -N -f -L <i>5432:localhost:5432</i> usuario@servidor</code><div class="desc">Túnel en segundo plano sin abrir shell (-N -f)</div></div>
+    <div class="cmd"><code><b>ssh</b> -J <i>bastion</i> usuario@servidor-interno</code><div class="desc">Saltar a través de un servidor intermedio (jump host)</div></div>
+  </div>
+
+  <div class="card c5">
+    <h2><span class="dot"></span>Configuración · ~/.ssh/config</h2>
+    <div class="cmd"><code>Host <i>taco</i></code><div class="desc">Define un alias para tu servidor</div></div>
+    <div class="cmd"><code>&nbsp;&nbsp;HostName <i>192.168.1.50</i></code><div class="desc">IP o dominio del servidor</div></div>
+    <div class="cmd"><code>&nbsp;&nbsp;User <i>admin</i> &nbsp;·&nbsp; Port <i>2222</i></code><div class="desc">Usuario y puerto por defecto</div></div>
+    <div class="cmd"><code>&nbsp;&nbsp;IdentityFile <i>~/.ssh/mi_clave</i></code><div class="desc">Clave a usar con este host</div></div>
+    <div class="cmd"><code><b>ssh</b> taco</code><div class="desc">¡Y ahora te conectas solo con el alias! 🌮</div></div>
+  </div>
+
+  <div class="card c6">
+    <h2><span class="dot"></span>Administración y diagnóstico</h2>
+    <div class="cmd"><code><b>sudo systemctl</b> status|restart <i>sshd</i></code><div class="desc">Ver estado o reiniciar el servicio SSH del servidor</div></div>
+    <div class="cmd"><code><b>ssh-keygen</b> -R <i>servidor</i></code><div class="desc">Borrar un host de known_hosts (si cambió su clave)</div></div>
+    <div class="cmd"><code><b>chmod</b> 700 ~/.ssh && <b>chmod</b> 600 ~/.ssh/*</code><div class="desc">Permisos correctos (SSH los exige para funcionar)</div></div>
+    <div class="cmd"><code><b>who</b> &nbsp;·&nbsp; <b>last</b></code><div class="desc">Ver quién está o estuvo conectado al servidor</div></div>
+    <div class="cmd"><code><b>tmux</b> / <b>screen</b></code><div class="desc">Mantener sesiones vivas aunque se corte la conexión</div></div>
+    <div class="cmd"><code><b>ssh</b> -o ServerAliveInterval=<i>60</i> usuario@servidor</code><div class="desc">Evitar que la sesión se cierre por inactividad</div></div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <div class="tip">💡 <b>Tip:</b> usa claves <b>ed25519</b> + <b>~/.ssh/config</b> y olvídate de escribir contraseñas y IPs</div>
+  <div>SSH Cheat Sheet 🌮 · 2026</div>
+</div>

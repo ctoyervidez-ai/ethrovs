@@ -6,8 +6,8 @@ export const metadata: Metadata = {
     title: "ETHROVS — Digital Energy in Motion",
     description: "Bilingual websites, design and smart technology for businesses ready to move.",
     icons: {
-      icon: "/assets/ethro-mark.png",
-      shortcut: "/assets/ethro-mark.png",
+      icon: [{ url: "/assets/ethrovs-favicon.png", sizes: "1024x1024", type: "image/png" }],
+      shortcut: "/assets/ethrovs-favicon.png",
       apple: [{ url: "/apple-touch-icon.png", sizes: "1024x1024", type: "image/png" }],
     },
     openGraph: {

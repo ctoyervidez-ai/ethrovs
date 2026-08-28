@@ -7,8 +7,8 @@ type Market = "us" | "mx";
 type ProjectKey = "costa" | "vsr" | "beck" | "excessive" | "ciao";
 
 const pricingByMarket = {
-  us: { price: "$275", currency: "USD", extras: ["+$20", "+$30", "+$35", "+$25"] },
-  mx: { price: "$5,400", currency: "MXN", extras: ["+$390", "+$590", "+$690", "+$490"] },
+  us: { price: "$300", currency: "USD", extras: ["+$20", "+$30", "+$35", "+$25"] },
+  mx: { price: "$5,900", currency: "MXN", extras: ["+$390", "+$590", "+$690", "+$490"] },
 } as const;
 
 const projects = {

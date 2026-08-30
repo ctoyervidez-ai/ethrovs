@@ -48,7 +48,7 @@ export default function HeroDeck({ language, viewLabel, deckLabel }: { language:
 
   const columnRef = useRef<HTMLDivElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
-  const sheenRef = useRef<HTMLSpanElement>(null);
+  const sheensRef = useRef<HTMLElement[]>([]);
 
   // Estado físico fuera de React: posición, velocidad y objetivo por eje.
   const motion = useRef({
@@ -97,6 +97,7 @@ export default function HeroDeck({ language, viewLabel, deckLabel }: { language:
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const state = motion.current;
+    sheensRef.current = Array.from(stage.querySelectorAll<HTMLElement>(".deck-sheen"));
 
     const step = (value: number, velocity: number, target: number, dt: number) => {
       const accel = -STIFFNESS * (value - target) - DAMPING * velocity;
@@ -117,10 +118,8 @@ export default function HeroDeck({ language, viewLabel, deckLabel }: { language:
       stage.style.transform =
         `rotateX(${state.tiltX.toFixed(3)}deg) rotateY(${state.tiltY.toFixed(3)}deg) ` +
         `translate3d(${state.drag.toFixed(2)}px, 0, 0) scale(${state.scale.toFixed(4)})`;
-      if (sheenRef.current) {
-        sheenRef.current.style.transform =
-          `translate3d(${(state.tiltY * 6 + state.drag * 0.5).toFixed(1)}%, ${(state.tiltX * -4).toFixed(1)}%, 0)`;
-      }
+      const glare = `translate3d(${(state.tiltY * 3.4 + state.drag * 0.3).toFixed(1)}%, ${(state.tiltX * -2.4).toFixed(1)}%, 0)`;
+      for (const sheen of sheensRef.current) sheen.style.transform = glare;
 
       // Umbrales por debajo de lo perceptible (0.05 grados, 0.15 px): dormir
       // ahí ahorra frames sin que se note un corte.
@@ -159,7 +158,7 @@ export default function HeroDeck({ language, viewLabel, deckLabel }: { language:
       });
       stage.style.transform = "";
       stage.style.willChange = "auto";
-      if (sheenRef.current) sheenRef.current.style.transform = "";
+      for (const sheen of sheensRef.current) sheen.style.transform = "";
     };
     document.addEventListener("visibilitychange", handleVisibility);
 
@@ -287,10 +286,10 @@ export default function HeroDeck({ language, viewLabel, deckLabel }: { language:
               role="img"
               aria-label={projects[key].alt[language]}
             >
+              <span className="deck-sheen" aria-hidden="true" />
               <span className="deck-edge" aria-hidden="true" />
             </figure>
           ))}
-          <span className="deck-sheen" ref={sheenRef} aria-hidden="true" />
         </div>
       </div>
       <div className="deck-meta">

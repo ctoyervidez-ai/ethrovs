@@ -72,9 +72,6 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .deck figure[data-pos="0"] { box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5), 0 36px 76px -26px rgba(0, 0, 0, 0.9); }
-  .deck-edge { box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), inset 0 0 0 1px rgba(255, 255, 255, 0.05); }
-  .deck-sheen { opacity: 0.3; mix-blend-mode: overlay; }
   :root {
     --paper: #100f0d;
     --surface: #1a1917;
@@ -174,8 +171,21 @@ h1 .serif { display: block; color: var(--blue); font-size: 1.04em; line-height: 
 .deck figure[data-exit="back"] { transform: translate3d(58%, 8%, 140px) rotate3d(0.2, 1, 0.34, 17deg); }
 /* Canto: da grosor físico a la tarjeta frontal en lugar de fingirlo con sombra. */
 .deck-edge { position: absolute; inset: 0; border-radius: inherit; pointer-events: none; box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), inset 0 0 0 1px rgba(20, 20, 18, 0.06); }
-/* Brillo direccional: se desplaza con la inclinación, como luz sobre vidrio. */
-.deck-sheen { position: absolute; inset: -22%; z-index: 6; pointer-events: none; border-radius: 8px; opacity: 0.5; mix-blend-mode: soft-light; background: linear-gradient(115deg, transparent 34%, rgba(255, 255, 255, 0.6) 48%, transparent 62%); }
+/* Brillo direccional: se desplaza con la inclinación, como luz sobre vidrio.
+   Vive DENTRO de la tarjeta y el `overflow: hidden` de la figura lo recorta a
+   su forma. Flotando suelto sobre el escenario era un rectángulo con bordes
+   rectos visibles en el aire, que se leía como un recorte sucio. La luz se
+   refleja en una superficie, no en el vacío. */
+.deck figure .deck-sheen { position: absolute; inset: -35%; pointer-events: none; opacity: 0; mix-blend-mode: soft-light; background: linear-gradient(112deg, transparent 30%, rgba(255, 255, 255, 0.42) 47%, rgba(255, 255, 255, 0.42) 50%, transparent 68%); transition: opacity 0.5s var(--e); }
+.deck figure[data-pos="0"] .deck-sheen { opacity: 0.85; }
+/* Ajustes oscuros de la baraja. Van AQUÍ, después de las reglas base: con la
+   misma especificidad gana la última declarada, y arriba perdían en silencio. */
+@media (prefers-color-scheme: dark) {
+  .deck figure[data-pos="0"] { box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5), 0 36px 76px -26px rgba(0, 0, 0, 0.9); }
+  .deck-edge { box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), inset 0 0 0 1px rgba(255, 255, 255, 0.05); }
+  .deck figure .deck-sheen { mix-blend-mode: overlay; }
+  .deck figure[data-pos="0"] .deck-sheen { opacity: 0.4; }
+}
 .deck-meta { display: flex; align-items: flex-end; justify-content: space-between; gap: 18px; }
 .deck-name { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.03em; margin: 5px 0 0; }
 .deck-dots { display: flex; gap: 6px; flex: none; }

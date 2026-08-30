@@ -1,0 +1,17 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "ethrovs",
+  "main": "dist/server/index.js",
+  "compatibility_date": "2026-05-15",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": { "directory": "dist/client", "binding": "ASSETS" },
+  "observability": { "enabled": true },
+  "workers_dev": true
+  // Cutover (ver blueprints/ethrovs-ronda-1-blueprint.md §9.1): tras verificar
+  // la paridad en la URL workers.dev, descomentar estas rutas y redeplegar
+  // para conectar el dominio. Rollback: volver a comentar y redeplegar.
+  // ,"routes": [
+  //   { "pattern": "ethrovs.com", "custom_domain": true },
+  //   { "pattern": "www.ethrovs.com", "custom_domain": true }
+  // ]
+}

@@ -1,0 +1,23 @@
+# Estado DNS de ethrovs.com ANTES del cutover
+# Capturado: 2026-08-30 22:02 UTC
+# Uso: si hay que revertir, restaurar estos registros en el panel de Cloudflare
+
+## A / CNAME (apex)
+104.21.35.50
+172.67.213.232
+## www
+172.67.213.232
+104.21.35.50
+## NS
+eleanor.ns.cloudflare.com.
+vin.ns.cloudflare.com.
+
+## Respuesta HTTP actual (hosting de ChatGPT vía Cloudflare)
+HTTP/2 200 
+date: Sun, 30 Aug 2026 22:02:06 GMT
+content-type: text/html; charset=utf-8
+link: </fonts/archivo-normal-latin.woff2>; rel=preload; as="font"; crossorigin="anonymous"; type="font/woff2", </fonts/instrument-serif-italic-latin.woff2>; rel=preload; as="font"; crossorigin="anonymous"; type="font/woff2"
+vary: RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Router-Segment-Prefetch, Next-Url, X-Vinext-Interception-Context, X-Vinext-Mounted-Slots, X-Vinext-Rsc-Render-Mode
+report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=g%2Fy3UV1I7RI1k1gJBsBYILL1ETpnw%2FqP9FRkF1aqLIiDSBmLKfZlVOylC9A%2FfpzIEgYzSoMqfzy3Yymk0v8uVa4bZne2kageSqOQn9T47SVcfMT7uHyRXN4uVA3aTw%3D%3D"}]}
+nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+server: cloudflare

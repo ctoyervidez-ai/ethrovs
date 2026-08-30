@@ -5,12 +5,14 @@
   "compatibility_date": "2026-05-15",
   "assets": { "directory": "dist/client", "binding": "ASSETS" },
   "observability": { "enabled": true },
-  "workers_dev": true
-  // Cutover (ver blueprints/ethrovs-ronda-1-blueprint.md §9.1): tras verificar
-  // la paridad en la URL workers.dev, descomentar estas rutas y redeplegar
-  // para conectar el dominio. Rollback: volver a comentar y redeplegar.
-  // ,"routes": [
-  //   { "pattern": "ethrovs.com", "custom_domain": true },
-  //   { "pattern": "www.ethrovs.com", "custom_domain": true }
-  // ]
+  // workers.dev se mantiene activo como URL de respaldo para probar cambios
+  // antes de que los vea el dominio real.
+  "workers_dev": true,
+  // Rutas del dominio activas: el siguiente `npm run deploy` ejecuta el cutover
+  // (ver blueprints/ethrovs-ronda-1-blueprint.md §9.1). Rollback: comentar
+  // estas rutas, redeplegar, y restaurar el DNS con docs/cutover/dns-before.txt.
+  "routes": [
+    { "pattern": "ethrovs.com", "custom_domain": true },
+    { "pattern": "www.ethrovs.com", "custom_domain": true }
+  ]
 }

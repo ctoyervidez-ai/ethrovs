@@ -237,7 +237,11 @@ h1 .serif { display: block; color: var(--blue); font-size: 1.04em; line-height: 
 .incl li { list-style: none; display: flex; align-items: center; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--line-soft); font-size: 0.95rem; }
 .incl li:first-child { border-top: 1px solid var(--line-soft); }
 .ck { width: 17px; height: 17px; border-radius: 50%; background: var(--acid); color: var(--on-acid); display: grid; place-items: center; font-size: 0.5rem; font-weight: 700; flex: none; }
-.terms { margin: 20px 0 0; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+/* Nota de flexibilidad: en caja baja a propósito. Las condiciones de pago
+   (.terms) van en versalitas porque son letra chica; esto es una frase que le
+   habla al cliente, y en mayúsculas se leería como advertencia legal. */
+.price-flex { margin: 20px 0 0; font-size: 0.91rem; line-height: 1.55; color: var(--muted-strong); max-width: 46ch; }
+.terms { margin: 14px 0 0; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
 .card .btn-wide { margin-top: 16px; }
 .extras { background: transparent; box-shadow: none; border-style: dashed; }
 .extras h3 { font-size: 1.22rem; font-weight: 700; letter-spacing: -0.03em; margin: 0 0 4px; }

@@ -54,6 +54,7 @@ const en: SiteCopy = {
     from: "From",
     description: "A professional page of up to six sections, ready to present your business and start bringing in customers.",
     items: ["Custom design, not a template", "Optimized mobile version", "Call, map and WhatsApp buttons", "Basic SEO and domain setup", "One round of changes"],
+    flexible: "Pricing is subject to evaluation. Tell us what your business needs and we adjust the proposal to the best possible price for your case.",
     terms: "50% to start · 50% before we publish",
     cta: "Book my page",
     whatsappMessage: "Hi ETHROVS, I want to book my Express 24H website",

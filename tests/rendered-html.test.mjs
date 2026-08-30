@@ -40,6 +40,7 @@ test("la portada en español sirve el sitio real con SEO local", async () => {
   assert.match(html, /hreflang="es"/i);
   assert.match(html, /hreflang="en"/i);
   assert.match(html, /hreflang="x-default"/i);
+  assert.match(html, /Precio sujeto a evaluación/);
 });
 
 test("la ruta /en sirve la versión en inglés", async () => {
@@ -52,6 +53,7 @@ test("la ruta /en sirve la versión en inglés", async () => {
   assert.match(html, /Websites that/);
   assert.match(html, /move businesses\./);
   assert.match(html, /\$300/);
+  assert.match(html, /Pricing is subject to evaluation/);
 });
 
 test("el portafolio usa imágenes reales con carga diferida", async () => {

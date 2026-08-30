@@ -53,6 +53,7 @@ const es = {
     from: "Desde",
     description: "Una página profesional de hasta seis secciones, lista para presentar tu negocio y empezar a recibir clientes.",
     items: ["Diseño personalizado, no plantilla", "Versión móvil optimizada", "Botones de llamada, mapa y WhatsApp", "SEO básico y conexión de dominio", "Una ronda de cambios"],
+    flexible: "Precio sujeto a evaluación. Cuéntanos qué necesita tu negocio y ajustamos la propuesta al mejor precio posible para tu caso.",
     terms: "50% para comenzar · 50% antes de publicar",
     cta: "Reservar mi página",
     whatsappMessage: "Hola ETHROVS, quiero reservar mi página Express 24H",

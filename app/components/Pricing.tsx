@@ -60,6 +60,7 @@ export default function PricingGrid({ copy, language }: { copy: SiteCopy["pricin
             <li key={item}><span className="ck" aria-hidden="true">✓</span><span>{item}</span></li>
           ))}
         </ul>
+        <p className="price-flex">{copy.flexible}</p>
         <p className="terms">{copy.terms}</p>
         <a className="btn btn-acid btn-wide" href={whatsappHref(copy.whatsappMessage)} target="_blank" rel="noreferrer">
           {copy.cta} <span className="arw">↗</span>

@@ -31,6 +31,8 @@ test("la portada en español sirve el sitio real con SEO local", async () => {
   assert.match(html, /Páginas web que/);
   assert.match(html, /mueven negocios\./);
   assert.match(html, /\$5,900/);
+  assert.match(html, /\$12,900/);
+  assert.match(html, /\$23,900/);
   assert.match(html, /application\/ld\+json/);
   const jsonLd = html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s);
   assert.ok(jsonLd, "JSON-LD presente");
@@ -41,6 +43,8 @@ test("la portada en español sirve el sitio real con SEO local", async () => {
   assert.match(html, /hreflang="en"/i);
   assert.match(html, /hreflang="x-default"/i);
   assert.match(html, /Precio sujeto a evaluación/);
+  for (const tier of ["Express", "Completo", "Tienda"]) assert.ok(html.includes(tier), `paquete ${tier}`);
+  assert.match(html, /Plan de cuidado/);
 });
 
 test("la ruta /en sirve la versión en inglés", async () => {
@@ -53,7 +57,10 @@ test("la ruta /en sirve la versión en inglés", async () => {
   assert.match(html, /Websites that/);
   assert.match(html, /move businesses\./);
   assert.match(html, /\$300/);
+  assert.match(html, /\$650/);
+  assert.match(html, /\$1,200/);
   assert.match(html, /Pricing is subject to evaluation/);
+  for (const tier of ["Express", "Complete", "Store"]) assert.ok(html.includes(tier), `package ${tier}`);
 });
 
 test("el portafolio usa imágenes reales con carga diferida", async () => {

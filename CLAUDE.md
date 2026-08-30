@@ -47,5 +47,13 @@ para tocar dependencias (el lockfile es pnpm-lock.yaml v10).
 - `.openai/hosting.json` y `app/chatgpt-auth.ts` son residuos del hosting de
   ChatGPT; se eliminan tras 7 días estables en Cloudflare (vite.config.ts aún
   importa hosting.json — quitar ambos en el mismo commit).
-- Datos reales intocables sin aprobación de Daniel: precios ($300 USD /
-  $5,900 MXN), plazo 24 h, WhatsApp +1 956 951 1763, nombres y URLs de clientes.
+- Datos reales intocables sin aprobación de Daniel: los tres precios de paquete
+  (Express $300 / $5,900 · Completo $650 / $12,900 · Tienda $1,200 / $23,900),
+  el plan de $39 al mes, el plazo de 24 h del Express, WhatsApp
+  +1 956 951 1763, y los nombres y URLs de clientes.
+- Los paquetes NO son tres tarjetas en columnas: son una escalera de filas con
+  hairlines (`.tiers`/`.tier`), como la sección de Proceso. Tres tarjetas
+  iguales es el patrón genérico de toda página de precios y se apretuja en
+  móvil. No lo conviertas a columnas.
+- Lo que no cabe en los tres paquetes (sistemas, catálogos grandes,
+  integraciones) se cotiza por WhatsApp y NO lleva precio publicado.

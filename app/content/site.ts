@@ -7,10 +7,24 @@ export const WHATSAPP_NUMBER = "19569511763";
 export const CONTACT_EMAIL = "ethernaldevops@gmail.com";
 export const CONTACT_PHONE = "+1-956-951-1763";
 
+export type TierKey = "express" | "completo" | "tienda";
+
 export const pricingByMarket = {
-  us: { price: "$300", currency: "USD", extras: ["+$20", "+$30", "+$35", "+$25"] },
-  mx: { price: "$5,900", currency: "MXN", extras: ["+$390", "+$590", "+$690", "+$490"] },
+  us: {
+    currency: "USD",
+    tiers: { express: "$300", completo: "$650", tienda: "$1,200" },
+    care: "$39",
+    extras: ["+$30", "+$10", "+$25", "+$20"],
+  },
+  mx: {
+    currency: "MXN",
+    tiers: { express: "$5,900", completo: "$12,900", tienda: "$23,900" },
+    care: "$790",
+    extras: ["+$590", "+$200", "+$490", "+$390"],
+  },
 } as const;
+
+export const tierOrder: TierKey[] = ["express", "completo", "tienda"];
 
 export const projects = {
   costa: {

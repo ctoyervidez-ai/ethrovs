@@ -1,9 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { pricingByMarket, whatsappHref, type Language, type Market } from "../content/site";
+import { pricingByMarket, tierOrder, whatsappHref, type Language, type Market } from "../content/site";
 import type { SiteCopy } from "../content/es";
 
+/**
+ * Escalera de paquetes. Deliberadamente NO son tres tarjetas iguales en
+ * columnas: eso es el patrón genérico de cualquier página de precios y rompe
+ * la retícula editorial del sitio. Son filas con hairlines, como la sección de
+ * Proceso, y en móvil se leen sin apretujarse.
+ */
 export default function PricingGrid({ copy, language }: { copy: SiteCopy["pricing"]; language: Language }) {
   const [market, setMarket] = useState<Market>(language === "es" ? "mx" : "us");
   const pricing = pricingByMarket[market];
@@ -43,41 +49,69 @@ export default function PricingGrid({ copy, language }: { copy: SiteCopy["pricin
   }
 
   return (
-    <div className="price-grid">
-      <div className="card rv">
-        <div className="cur" role="group" aria-label="Currency">
-          <button type="button" aria-pressed={market === "us"} onClick={() => chooseMarket("us")}>USA · USD</button>
-          <button type="button" aria-pressed={market === "mx"} onClick={() => chooseMarket("mx")}>México · MXN</button>
-        </div>
-        <div className="amount">
-          <span className="from">{copy.from}</span>
-          <span className="fig">{pricing.price}</span>
-          <span className="cc">{pricing.currency}</span>
-        </div>
-        <p className="price-description">{copy.description}</p>
-        <ul className="incl">
-          {copy.items.map((item) => (
-            <li key={item}><span className="ck" aria-hidden="true">✓</span><span>{item}</span></li>
-          ))}
-        </ul>
+    <>
+      <div className="cur" role="group" aria-label="Currency">
+        <button type="button" aria-pressed={market === "us"} onClick={() => chooseMarket("us")}>USA · USD</button>
+        <button type="button" aria-pressed={market === "mx"} onClick={() => chooseMarket("mx")}>México · MXN</button>
+      </div>
+
+      <div className="tiers">
+        {tierOrder.map((key) => {
+          const tier = copy.tiers[key];
+          return (
+            <article className="tier rv" key={key}>
+              <div className="tier-main">
+                <h3>{tier.name}</h3>
+                <p className="tier-for">{tier.for}</p>
+                <ul>
+                  {tier.items.map((item) => <li key={item}>{item}</li>)}
+                </ul>
+              </div>
+              <div className="tier-buy">
+                <p className="tier-price">
+                  <b>{pricing.tiers[key]}</b>
+                  <span>{pricing.currency}</span>
+                </p>
+                <p className="label tier-when">{tier.when}</p>
+                <a className="btn btn-acid btn-wide" href={whatsappHref(tier.whatsappMessage)} target="_blank" rel="noreferrer">
+                  {copy.cta} <span className="arw">↗</span>
+                </a>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+
+      <div className="price-foot">
         <p className="price-flex">{copy.flexible}</p>
         <p className="terms">{copy.terms}</p>
-        <a className="btn btn-acid btn-wide" href={whatsappHref(copy.whatsappMessage)} target="_blank" rel="noreferrer">
-          {copy.cta} <span className="arw">↗</span>
-        </a>
       </div>
-      <div className="card extras rv">
-        <h3>{copy.extrasTitle}</h3>
-        <p>{copy.extrasText}</p>
-        <dl>
-          {copy.extras.map((extra, index) => (
-            <div className="ext-row" key={extra}>
-              <dt>{extra}</dt>
-              <dd>{pricing.extras[index]}</dd>
-            </div>
-          ))}
-        </dl>
+
+      <div className="after-tiers">
+        <div className="care rv">
+          <div className="care-head">
+            <h3>{copy.care.title}</h3>
+            <p className="care-amt">
+              <b>{pricing.care}</b>
+              <span>{pricing.currency} {copy.care.per}</span>
+            </p>
+          </div>
+          <p>{copy.care.text}</p>
+        </div>
+
+        <div className="card extras rv">
+          <h3>{copy.extrasTitle}</h3>
+          <p>{copy.extrasText}</p>
+          <dl>
+            {copy.extras.map((extra, index) => (
+              <div className="ext-row" key={extra}>
+                <dt>{extra}</dt>
+                <dd>{pricing.extras[index]}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

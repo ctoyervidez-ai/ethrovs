@@ -55,7 +55,7 @@ export default function Home({ copy, language }: { copy: SiteCopy; language: Lan
               <div><b>24 h</b><p className="label">{copy.hero.proof[0]}</p></div>
               <div><b>5</b><p className="label">{copy.hero.proof[1]}</p></div>
               <div><b>ES · EN</b><p className="label">{copy.hero.proof[2]}</p></div>
-              <div><b>{heroPricing.price}</b><p className="label">{copy.hero.proof[3]}, {heroPricing.currency}</p></div>
+              <div><b>{heroPricing.tiers.express}</b><p className="label">{copy.hero.proof[3]}, {heroPricing.currency}</p></div>
             </div>
           </div>
           <HeroDeck language={language} viewLabel={copy.hero.deckView} deckLabel={copy.hero.deckLabel} />
@@ -96,7 +96,7 @@ export default function Home({ copy, language }: { copy: SiteCopy; language: Lan
 
         <section className="sec wrap" id="precio">
           <div className="sec-head">
-            <h2>Website Express <span className="serif">24 h.</span></h2>
+            <h2>{copy.pricing.title} <span className="serif">{copy.pricing.titleAccent}</span></h2>
             <p className="label">{copy.pricing.label}</p>
           </div>
           <PricingGrid copy={copy.pricing} language={language} />

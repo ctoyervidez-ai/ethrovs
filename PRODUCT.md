@@ -4,10 +4,18 @@
   frontera (Laredo, TX / Nuevo Laredo, Tamps.) fundado por Daniel Oyervidez.
 - **Platform:** web
 - **Superficie:** landing de una página (modo Persuade) en dos idiomas: `/` (es), `/en` (en).
-- **Qué vende:** "Website Express 24 h" — página profesional de hasta 6 secciones
-  entregada en 24 horas. Desde $300 USD / $5,900 MXN, 50% para comenzar.
-  Extras: cambios adicionales (+$20), bilingüe (+$30), Google Business (+$35),
-  página adicional (+$25) (USD; equivalentes MXN en app/content/site.ts).
+- **Qué vende:** tres paquetes, 50% para comenzar y 50% antes de publicar.
+  - Express $300 USD / $5,900 MXN — una página, hasta 6 secciones, 24 h
+  - Completo $650 USD / $12,900 MXN — hasta 12 secciones o multipágina,
+    bilingüe y Google Business incluidos, 3 a 5 días
+  - Tienda $1,200 USD / $23,900 MXN — Shopify, hasta 25 productos, pagos,
+    envíos e impuestos, 5 a 7 días
+  Plan de cuidado opcional: $39 USD / $790 MXN al mes.
+  Extras (una sola vez): bilingüe en Express +$30, producto adicional +$10,
+  página adicional +$25, ronda extra +$20. Cifras en app/content/site.ts.
+  Trabajo mayor (sistemas, catálogos grandes) se cotiza por WhatsApp, sin
+  precio publicado: un precio en la página obliga a cumplirlo aunque el
+  proyecto resulte del doble.
 - **Cliente objetivo:** dueños de negocios locales de ambos lados de la frontera
   (restaurantes, clínicas, tiendas, servicios) que navegan desde el teléfono.
 - **Conversión:** conversaciones calificadas por WhatsApp (+1 956 951 1763) y

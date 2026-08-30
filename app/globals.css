@@ -164,6 +164,14 @@ h1 .serif { display: block; color: var(--blue); font-size: 1.04em; line-height: 
 .deck figure[data-pos="1"] { opacity: 0.62; transform: translate3d(3%, -5%, -120px) rotateY(-4deg); z-index: 4; }
 .deck figure[data-pos="2"] { opacity: 0.3; transform: translate3d(6%, -9.5%, -240px) rotateY(-7deg); z-index: 3; }
 .deck figure[data-pos="3"], .deck figure[data-pos="4"] { opacity: 0; transform: translate3d(9%, -13%, -360px) rotateY(-10deg); z-index: 1; }
+/* Salida física: la tarjeta se levanta del mazo (Z positivo, hacia quien mira)
+   y sale girando hacia el lado del gesto, en vez de solo desvanecerse.
+   El recorrido lateral es corto y la opacidad muere antes que el movimiento:
+   la baraja vive a la derecha del hero, y una tarjeta cruzando entera por
+   encima del titular se leería como un choque, no como profundidad. */
+.deck figure[data-exit] { z-index: 6; opacity: 0; transition: opacity 0.34s cubic-bezier(0.5, 0, 0.9, 0.6), transform 0.56s cubic-bezier(0.3, 0, 0.7, 0.35); }
+.deck figure[data-exit="fwd"] { transform: translate3d(-58%, 8%, 140px) rotate3d(0.2, 1, 0.34, -17deg); }
+.deck figure[data-exit="back"] { transform: translate3d(58%, 8%, 140px) rotate3d(0.2, 1, 0.34, 17deg); }
 /* Canto: da grosor físico a la tarjeta frontal en lugar de fingirlo con sombra. */
 .deck-edge { position: absolute; inset: 0; border-radius: inherit; pointer-events: none; box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), inset 0 0 0 1px rgba(20, 20, 18, 0.06); }
 /* Brillo direccional: se desplaza con la inclinación, como luz sobre vidrio. */

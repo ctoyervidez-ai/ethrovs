@@ -66,8 +66,8 @@ test("la ruta /en sirve la versión en inglés", async () => {
 test("el portafolio usa imágenes reales con carga diferida", async () => {
   const html = await (await render("/")).text();
   const lazy = html.match(/loading="lazy"/g) ?? [];
-  assert.equal(lazy.length, 5, "cinco proyectos con loading=lazy");
-  for (const shot of ["costa-grill.jpg", "vsr444.jpg", "beck.jpg", "excessive.jpg", "ciao.jpg"]) {
+  assert.equal(lazy.length, 4, "cuatro proyectos con loading=lazy");
+  for (const shot of ["costa-grill.jpg", "vsr444.jpg", "excessive.jpg", "ciao.jpg"]) {
     assert.ok(html.includes(`/assets/shots/${shot}`), `incluye ${shot}`);
   }
 });

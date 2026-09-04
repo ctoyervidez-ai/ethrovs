@@ -27,7 +27,6 @@ const es = {
     descriptions: {
       costa: "Una experiencia cálida y directa para un restaurante de mariscos, optimizada para convertir visitas en reservaciones.",
       vsr: "Una tienda editorial de edición limitada que une moda, música y una identidad visual construida desde la presión.",
-      beck: "Una experiencia editorial y refinada para presentar tratamientos, dar confianza médica y conectar con nuevos pacientes.",
       excessive: "Una experiencia bilingüe para detallado automotriz premium, diseñada para mostrar resultados y convertir visitas en citas.",
       ciao: "Una experiencia cálida y llena de sabor para una pizzería artesanal, diseñada para abrir el apetito y convertir visitas en pedidos.",
     } as Record<ProjectKey, string>,
@@ -103,7 +102,6 @@ const es = {
     // la sección en app/components/Home.tsx (SHOW_TESTIMONIALS).
     items: [
       { quote: "PENDIENTE: frase real del cliente.", name: "Nombre", role: "Costa Grill" },
-      { quote: "PENDIENTE: frase real del cliente.", name: "Nombre", role: "BECK" },
       { quote: "PENDIENTE: frase real del cliente.", name: "Nombre", role: "Excessive Detailing" },
     ],
   },

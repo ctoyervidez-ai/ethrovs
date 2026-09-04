@@ -28,7 +28,6 @@ const en: SiteCopy = {
     descriptions: {
       costa: "A warm, direct experience for a seafood restaurant, tuned to turn visits into reservations.",
       vsr: "A limited-release editorial store joining fashion, music and an identity built under pressure.",
-      beck: "A refined editorial experience that presents treatments, builds medical trust and reaches new patients.",
       excessive: "A bilingual experience for premium auto detailing, built to show results and turn visits into bookings.",
       ciao: "A warm, flavor-forward experience for an artisan pizzeria, designed to build appetite and turn visits into orders.",
     } as Record<ProjectKey, string>,
@@ -104,7 +103,6 @@ const en: SiteCopy = {
     // the section in app/components/Home.tsx (SHOW_TESTIMONIALS).
     items: [
       { quote: "PENDING: real client quote.", name: "Name", role: "Costa Grill" },
-      { quote: "PENDING: real client quote.", name: "Name", role: "BECK" },
       { quote: "PENDING: real client quote.", name: "Name", role: "Excessive Detailing" },
     ],
   },

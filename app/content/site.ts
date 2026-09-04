@@ -65,7 +65,7 @@ export const projects = {
 } as const;
 
 export const deckOrder: ProjectKey[] = ["beck", "excessive", "costa", "vsr", "ciao"];
-export const workOrder: ProjectKey[] = ["costa", "vsr", "beck", "excessive", "ciao"];
+export const workOrder: ProjectKey[] = ["costa", "vsr", "excessive", "ciao"];
 
 export const whatsappHref = (message: string) =>
   `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;

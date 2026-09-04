@@ -1,6 +1,6 @@
 export type Language = "es" | "en";
 export type Market = "us" | "mx";
-export type ProjectKey = "costa" | "vsr" | "beck" | "excessive" | "ciao";
+export type ProjectKey = "costa" | "vsr" | "excessive" | "ciao";
 
 export const SITE_URL = "https://ethrovs.com";
 export const WHATSAPP_NUMBER = "19569511763";
@@ -41,13 +41,6 @@ export const projects = {
     alt: { es: "Portada del sitio de VSR 444", en: "Homepage of the VSR 444 website" },
     category: { es: "Edición limitada · H-Town", en: "Limited release · H-Town" },
   },
-  beck: {
-    name: "BECK",
-    href: "https://beckcentrodebelleza.com/",
-    image: "/assets/shots/beck.jpg",
-    alt: { es: "Portada del sitio de BECK", en: "Homepage of the BECK website" },
-    category: { es: "Medicina estética · Nuevo Laredo", en: "Aesthetic medicine · Nuevo Laredo" },
-  },
   excessive: {
     name: "Excessive Detailing",
     href: "https://excessivedetailing.com/",
@@ -64,7 +57,7 @@ export const projects = {
   },
 } as const;
 
-export const deckOrder: ProjectKey[] = ["beck", "excessive", "costa", "vsr", "ciao"];
+export const deckOrder: ProjectKey[] = ["excessive", "costa", "vsr", "ciao"];
 export const workOrder: ProjectKey[] = ["costa", "vsr", "excessive", "ciao"];
 
 export const whatsappHref = (message: string) =>

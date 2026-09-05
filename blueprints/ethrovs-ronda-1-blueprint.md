@@ -27,8 +27,8 @@ EARS (`WHEN`, `THE SYSTEM SHALL`) quedan en inglés.
 
 ETHROVS (ethrovs.com) es el estudio web bilingüe de Daniel Oyervidez, con base en Laredo, TX y
 Nuevo Laredo, MX. Vende un solo producto claro — **"Website Express 24 h"** desde **$300 USD /
-$5,900 MXN** — a negocios locales de ambos lados de la frontera, con un portafolio de cinco sitios
-en vivo (Costa Grill, VSR 444, BECK, Excessive Detailing, Ciao Kitchen). Esta ronda **no cambia el
+$5,900 MXN** — a negocios locales de ambos lados de la frontera, con un portafolio de cuatro sitios
+en vivo (Costa Grill, VSR 444, Excessive Detailing, Ciao Kitchen). Esta ronda **no cambia el
 producto ni el copy de venta**: migra el hosting de la infraestructura de ChatGPT/OpenAI (que hoy
 sirve una versión desactualizada con precio $200) a la propia cuenta Cloudflare del usuario, separa
 los idiomas por URL (`/` = ES, `/en` = EN) para SEO local, y añade metadata localizada, sitemap,
@@ -520,12 +520,11 @@ test("/ renderiza el sitio real en español", async () => {
   assert.ok(html.includes("ethernaldevops@gmail.com"), "falta el email");
 });
 
-test("los cinco proyectos del portafolio están enlazados", async () => {
+test("los cuatro proyectos del portafolio están enlazados", async () => {
   const html = await (await fetchPath("/")).text();
   const urls = [
     "https://costagrillmx.com/",
     "https://vsr444.com/",
-    "https://beckcentrodebelleza.com/",
     "https://excessivedetailing.com/",
     "https://ciaokitchenmx.com/",
   ];
@@ -745,7 +744,7 @@ git tag step-04-componentes-i
 - **Editar** `app/page.tsx` para usarlos.
 
 **Done when**
-- [ ] WHEN `pnpm test` runs THE SYSTEM SHALL exit 0 — the five portfolio URLs still render.
+- [ ] WHEN `pnpm test` runs THE SYSTEM SHALL exit 0 — the four portfolio URLs still render.
 - [ ] WHEN `npx tsc --noEmit` and `pnpm lint` run THE SYSTEM SHALL exit 0.
 
 **Verify**
@@ -1088,13 +1087,13 @@ Primera adición visible (fuera del "cero cambio visual" del refactor, que termi
 Todo con clases y tokens existentes de §7 — **cero CSS nuevo en este paso**:
 
 - **Editar** `app/content/es.ts` y `app/content/en.ts`: añadir al objeto de copy
-  - `hero.credibility`: ES `"5 sitios en vivo · entrega 24 h · 2 países"`, EN
-    `"5 live sites · 24 h delivery · 2 countries"`.
+  - `hero.credibility`: ES `"4 sitios en vivo · entrega 24 h · 2 países"`, EN
+    `"4 live sites · 24 h delivery · 2 countries"`.
   - `testimonials`: `label` (ES `"Lo que dicen"` / EN `"What they say"`), `title` (ES
     `"Clientes que ya están en vivo."` / EN `"Clients already live."`) y `items`: 3 entradas
     `{ quote, name, business }` con quotes placeholder **claramente marcados**:
     `"TODO(daniel): frase real del cliente"` y `name`/`business` de tres clientes reales del
-    portafolio (Costa Grill, BECK, Excessive Detailing). Ampliar la interfaz `Copy` en `site.ts`.
+    portafolio (Costa Grill, Excessive Detailing). Ampliar la interfaz `Copy` en `site.ts`.
 - **Crear** `app/components/Testimonials.tsx`: `<section className="sec wrap" id="testimonios">`
   con `.sec-head` (h2 = title, `.label` = label) y un grid `.svc` de tres `<article>`, cada uno con
   `<blockquote className="serif">` (la cita), y un `<p className="label">` con `name · business`.
@@ -1107,9 +1106,9 @@ Todo con clases y tokens existentes de §7 — **cero CSS nuevo en este paso**:
 **Done when**
 - [ ] WHEN the compiled worker serves `GET /` THE SYSTEM SHALL render `id="testimonios"`, three
       `<blockquote>` elements, the marker `TODO(daniel)` and the string
-      `5 sitios en vivo · entrega 24 h · 2 países`.
+      `4 sitios en vivo · entrega 24 h · 2 países`.
 - [ ] WHEN the compiled worker serves `GET /en` THE SYSTEM SHALL render
-      `5 live sites · 24 h delivery · 2 countries`.
+      `4 live sites · 24 h delivery · 2 countries`.
 - [ ] WHEN `git diff` for this step is inspected THE SYSTEM SHALL show zero changes to
       `app/globals.css` (adiciones solo con clases existentes).
 - [ ] WHEN `pnpm test`, `npx tsc --noEmit` and `pnpm lint` run THE SYSTEM SHALL exit 0.
@@ -1125,7 +1124,7 @@ const env = { ASSETS: { fetch: async () => new Response("", { status: 404 }) } }
 const ctx = { waitUntil() {}, passThroughOnException() {} };
 const es = await (await w.fetch(new Request("http://localhost/", { headers: { accept: "text/html" } }), env, ctx)).text();
 const en = await (await w.fetch(new Request("http://localhost/en", { headers: { accept: "text/html" } }), env, ctx)).text();
-const need = [[es, "id=\"testimonios\""], [es, "TODO(daniel)"], [es, "5 sitios en vivo · entrega 24 h · 2 países"], [en, "5 live sites · 24 h delivery · 2 countries"]];
+const need = [[es, "id=\"testimonios\""], [es, "TODO(daniel)"], [es, "4 sitios en vivo · entrega 24 h · 2 países"], [en, "4 live sites · 24 h delivery · 2 countries"]];
 for (const [h, s] of need) if (!h.includes(s)) { console.error("FALTA: " + s); process.exit(1); }
 if ((es.match(/<blockquote/g) ?? []).length !== 3) { console.error("no hay 3 blockquotes"); process.exit(1); }
 console.log("OK testimonios y credibilidad");'    # expect: OK testimonios y credibilidad, exit 0
@@ -1150,7 +1149,7 @@ El repo ya trae `:focus-visible` global y `prefers-reduced-motion` (CSS y deck J
   `<img className="img" src={…} alt={project.alt} loading="lazy" decoding="async"
   style={{ objectFit: "cover", objectPosition: "top center", width: "100%", height: "100%" }} />`.
   Los `src` son los archivos reales detrás de las vars CSS (de `globals.css`):
-  `/assets/shots/costa-grill.jpg`, `/assets/shots/vsr444.jpg`, `/assets/shots/beck.jpg`,
+  `/assets/shots/costa-grill.jpg`, `/assets/shots/vsr444.jpg`,
   `/assets/shots/excessive.jpg`, `/assets/ciao-kitchen.png` — añadirlos como campo `src` de cada
   proyecto en `app/content/site.ts`. El deck del hero (above the fold) queda como está.
 - **Editar** `tests/site.test.mjs` — asserts permanentes de los pasos 11 y 12:
@@ -1160,19 +1159,19 @@ test("testimonios, credibilidad e imágenes lazy", async () => {
   const es = await (await fetchPath("/")).text();
   assert.ok(es.includes('id="testimonios"'));
   assert.equal((es.match(/<blockquote/g) ?? []).length, 3); // una por testimonio (3 en §9 paso 11)
-  assert.ok(es.includes("5 sitios en vivo · entrega 24 h · 2 países"));
-  assert.equal((es.match(/loading="lazy"/g) ?? []).length, 5); // una por proyecto del portafolio (5 en §1)
+  assert.ok(es.includes("4 sitios en vivo · entrega 24 h · 2 países"));
+  assert.equal((es.match(/loading="lazy"/g) ?? []).length, 4); // una por proyecto del portafolio (4 en §1)
 });
 ```
 
-  (El conteo de 5 se aserta en el **HTML** renderizado — el `map` sobre los 5 proyectos emite 5
+  (El conteo de 4 se aserta en el **HTML** renderizado — el `map` sobre los 4 proyectos emite 4
   `<img>` desde una sola ocurrencia de `loading="lazy"` en la fuente de `Work.tsx`.)
 
 **Done when**
-- [ ] WHEN the compiled worker serves `GET /` THE SYSTEM SHALL contain exactly 5 occurrences of
+- [ ] WHEN the compiled worker serves `GET /` THE SYSTEM SHALL contain exactly 4 occurrences of
       `loading="lazy"` — one per portfolio project — and each `<img>` SHALL carry a non-empty `alt`.
 - [ ] WHEN `app/content/site.ts` is read THE SYSTEM SHALL define a `src` field per project pointing
-      at the five real asset paths listed in the Do.
+      at the four real asset paths listed in the Do.
 - [ ] WHEN `pnpm test` runs THE SYSTEM SHALL exit 0, 0 failed, 0 skipped.
 
 **Verify**
@@ -1304,7 +1303,6 @@ head_ok "og.png"           "$BASE_URL/og.png"
 head_ok "apple-touch-icon" "$BASE_URL/apple-touch-icon.png"
 head_ok "shot costa"       "$BASE_URL/assets/shots/costa-grill.jpg"
 head_ok "shot vsr"         "$BASE_URL/assets/shots/vsr444.jpg"
-head_ok "shot beck"        "$BASE_URL/assets/shots/beck.jpg"
 head_ok "shot excessive"   "$BASE_URL/assets/shots/excessive.jpg"
 head_ok "shot ciao"        "$BASE_URL/assets/ciao-kitchen.png"
 exit $fail

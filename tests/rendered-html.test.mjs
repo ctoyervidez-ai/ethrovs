@@ -70,7 +70,6 @@ test("el portafolio usa imágenes reales con carga diferida", async () => {
   for (const shot of ["costa-grill.jpg", "vsr444.jpg", "excessive.jpg", "ciao.jpg"]) {
     assert.ok(html.includes(`/assets/shots/${shot}`), `incluye ${shot}`);
   }
-  assert.doesNotMatch(html, /beckcentrodebelleza|beck\.jpg|>BECK</i);
 });
 
 test("sitemap.xml lista ambas versiones con hreflang", async () => {

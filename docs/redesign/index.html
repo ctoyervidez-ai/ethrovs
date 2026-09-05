@@ -16,7 +16,6 @@
    ========================================================== */
 
 :root{
-  --shot-beck:url("./shots/beck.jpg");
   --shot-exc:url("./shots/excessive.jpg");
   --shot-costa:url("./shots/costa-grill.jpg");
   --shot-vsr:url("./shots/vsr444.jpg");
@@ -471,7 +470,7 @@ footer{padding-block:clamp(34px,5vw,56px)}
 
       <div class="proof">
         <div><b>24 h</b><p class="label" data-i18n data-es="Entrega mínima" data-en="Fastest delivery"></p></div>
-        <div><b>4</b><p class="label" data-i18n data-es="Sitios en vivo" data-en="Sites live"></p></div>
+        <div><b>3</b><p class="label" data-i18n data-es="Sitios en vivo" data-en="Sites live"></p></div>
         <div><b>ES · EN</b><p class="label" data-i18n data-es="Bilingüe" data-en="Bilingual"></p></div>
         <div><b data-price="$200|$3,900">$200</b><p class="label"><span data-i18n data-es="Desde," data-en="From,"></span> <span data-price="USD|MXN">USD</span></p></div>
       </div>
@@ -479,15 +478,14 @@ footer{padding-block:clamp(34px,5vw,56px)}
 
     <div class="deck-col">
       <div class="deck" id="deck">
-        <figure data-pos="0" style="background-image:var(--shot-beck)"  role="img" aria-label="Sitio de BECK, medicina estética en Nuevo Laredo"></figure>
-        <figure data-pos="1" style="background-image:var(--shot-exc)"   role="img" aria-label="Sitio de Excessive Detailing, detallado automotriz en Dallas–Fort Worth"></figure>
-        <figure data-pos="2" style="background-image:var(--shot-costa)" role="img" aria-label="Sitio de Costa Grill, restaurante de mariscos en Nuevo Laredo"></figure>
-        <figure data-pos="3" style="background-image:var(--shot-vsr)"   role="img" aria-label="Sitio de VSR 444, tienda de edición limitada"></figure>
+        <figure data-pos="0" style="background-image:var(--shot-exc)"   role="img" aria-label="Sitio de Excessive Detailing, detallado automotriz en Dallas–Fort Worth"></figure>
+        <figure data-pos="1" style="background-image:var(--shot-costa)" role="img" aria-label="Sitio de Costa Grill, restaurante de mariscos en Nuevo Laredo"></figure>
+        <figure data-pos="2" style="background-image:var(--shot-vsr)"   role="img" aria-label="Sitio de VSR 444, tienda de edición limitada"></figure>
       </div>
       <div class="deck-meta">
         <div>
-          <p class="label" id="deck-cat">Medicina estética · Nuevo Laredo</p>
-          <p class="deck-name" id="deck-name">BECK</p>
+          <p class="label" id="deck-cat">Detallado móvil · DFW</p>
+          <p class="deck-name" id="deck-name">Excessive Detailing</p>
         </div>
         <div class="deck-dots" id="deck-dots" role="tablist" aria-label="Proyectos"></div>
       </div>
@@ -533,25 +531,12 @@ footer{padding-block:clamp(34px,5vw,56px)}
       <span class="live"><span data-i18n data-es="Ver en vivo" data-en="View live"></span> <span class="arw">↗</span></span>
     </a>
 
-    <a class="case rv" href="https://beckcentrodebelleza.com/" target="_blank" rel="noopener">
-      <div class="case-shot">
-        <div class="img" style="background-image:var(--shot-beck)" role="img" aria-label="Portada del sitio de BECK"></div>
-        <span class="go" aria-hidden="true">↗</span>
-      </div>
-      <div class="case-bar"><span class="idx">03</span><p class="label" data-i18n data-es="Medicina estética · Nuevo Laredo" data-en="Aesthetic medicine · Nuevo Laredo"></p></div>
-      <h3>BECK</h3>
-      <p data-i18n
-         data-es="Una experiencia editorial y refinada para presentar tratamientos, dar confianza médica y conectar con nuevos pacientes."
-         data-en="A refined editorial experience that presents treatments, builds medical trust and reaches new patients."></p>
-      <span class="live"><span data-i18n data-es="Ver en vivo" data-en="View live"></span> <span class="arw">↗</span></span>
-    </a>
-
     <a class="case rv" href="https://excessivedetailing.com/" target="_blank" rel="noopener">
       <div class="case-shot">
         <div class="img" style="background-image:var(--shot-exc)" role="img" aria-label="Portada del sitio de Excessive Detailing"></div>
         <span class="go" aria-hidden="true">↗</span>
       </div>
-      <div class="case-bar"><span class="idx">04</span><p class="label" data-i18n data-es="Detallado móvil · DFW" data-en="Mobile detailing · DFW"></p></div>
+      <div class="case-bar"><span class="idx">03</span><p class="label" data-i18n data-es="Detallado móvil · DFW" data-en="Mobile detailing · DFW"></p></div>
       <h3>Excessive Detailing</h3>
       <p data-i18n
          data-es="Una experiencia bilingüe para detallado automotriz premium, diseñada para mostrar resultados y convertir visitas en citas."
@@ -842,7 +827,6 @@ footer{padding-block:clamp(34px,5vw,56px)}
   var catEl  = document.getElementById("deck-cat");
 
   var meta = [
-    {n:"BECK",                es:"Medicina estética · Nuevo Laredo",  en:"Aesthetic medicine · Nuevo Laredo"},
     {n:"Excessive Detailing", es:"Detallado móvil · Dallas–Fort Worth",en:"Mobile detailing · Dallas–Fort Worth"},
     {n:"Costa Grill",         es:"Restaurante · Nuevo Laredo",        en:"Restaurant · Nuevo Laredo"},
     {n:"VSR 444",             es:"Edición limitada · H-Town",         en:"Limited release · H-Town"}

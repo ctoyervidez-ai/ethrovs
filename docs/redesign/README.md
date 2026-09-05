@@ -9,8 +9,8 @@ Nada de esta carpeta se despliega. `docs/` no se sirve, así que agregar esto
 ## Qué incluye la maqueta
 
 - Nav con switch ES/EN y CTA
-- Hero: titular con el renglón en cursiva azul, fila de prueba (24 h / 4 / ES·EN / precio) y deck 3D de capturas que rota solo cada 4.2 s
-- Trabajo: reja 2×2 con capturas reales, zoom al pasar el mouse
+- Hero: titular con el renglón en cursiva azul, fila de prueba (24 h / 3 / ES·EN / precio) y deck 3D de capturas que rota solo cada 4.2 s
+- Trabajo: reja de tres proyectos con capturas reales, zoom al pasar el mouse
 - Servicios, Proceso, Precio (con selector USD/MXN y extras), Dudas
 - Banda de cierre oscura con acento lima y footer
 
@@ -33,24 +33,23 @@ diferencia, gana el repo** — es la fuente de verdad.
 
 ### Las capturas
 
-`shots/` tiene las cuatro capturas de los sitios de clientes (JPEG, 70–120 KB
+`shots/` tiene las tres capturas de los sitios de clientes (JPEG, 70–120 KB
 cada una). Cada una se declara **una sola vez** como variable CSS en `:root` y
 se reutiliza en el deck del hero y en la reja de trabajo:
 
 ```css
-:root{ --shot-beck:url("./shots/beck.jpg"); }
-.deck figure{ background-image:var(--shot-beck); }
+:root{ --shot-costa:url("./shots/costa-grill.jpg"); }
+.deck figure{ background-image:var(--shot-costa); }
 ```
 
 Si las usas en la app, muévelas a `public/assets/shots/` y ajusta las rutas.
 
-**Falta Ciao Kitchen.** La maqueta se hizo con cuatro proyectos; el repo ya
-tiene cinco. Al portar, agrega el quinto.
+**Falta Ciao Kitchen.** La maqueta contiene tres proyectos; el repo tiene cuatro. Al portar, agrega Ciao Kitchen.
 
 ## Pendientes del repo que conviene resolver de paso
 
 1. **Ciao Kitchen está en `main` pero no en el aire.** El sitio servido hoy
-   muestra cuatro proyectos; `app/page.tsx` tiene cinco. Falta desplegar.
+   mostraba una selección de proyectos; consulta `app/content/site.ts` para la lista actual. Falta desplegar.
 
 2. **1.34 MB de imágenes sin usar** en `public/assets/`, sin una sola
    referencia en el código:

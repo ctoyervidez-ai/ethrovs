@@ -20,7 +20,7 @@
   (restaurantes, clínicas, tiendas, servicios) que navegan desde el teléfono.
 - **Conversión:** conversaciones calificadas por WhatsApp (+1 956 951 1763) y
   correo (ethernaldevops@gmail.com). Sin formularios, sin analítica todavía.
-- **Prueba:** 5 sitios en vivo: Costa Grill, VSR 444, BECK, Excessive Detailing,
+- **Prueba:** 4 sitios en vivo: Costa Grill, VSR 444, Excessive Detailing,
   Ciao Kitchen (URLs en app/content/site.ts). Sin testimonios aún (sección
   preparada, apagada).
 - **Hechos intocables sin aprobación:** precios, plazo de 24 h, condiciones de

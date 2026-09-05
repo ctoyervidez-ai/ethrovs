@@ -12,7 +12,7 @@ export default function Work({ copy, language }: { copy: SiteCopy["work"]; langu
         {workOrder.map((key, index) => {
           const project = projects[key];
           return (
-            <a className={`case rv${key === "ciao" ? " case--wide" : ""}`} href={project.href} target="_blank" rel="noreferrer" key={key}>
+            <a className="case rv" href={project.href} target="_blank" rel="noreferrer" key={key}>
               <div className="case-shot">
                 <img
                   className="img"

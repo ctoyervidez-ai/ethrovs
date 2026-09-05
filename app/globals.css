@@ -344,9 +344,6 @@ footer { padding-block: clamp(34px, 5vw, 56px); }
 }
 @media (min-width: 800px) {
   .work-grid { grid-template-columns: 1fr 1fr; }
-  .case--wide { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(260px, 0.55fr); column-gap: clamp(28px, 4vw, 58px); align-items: start; }
-  .case--wide .case-shot { grid-row: 1 / span 4; }
-  .case--wide .case-bar { margin-top: 8px; }
   .svc { grid-template-columns: repeat(3, 1fr); }
 }
 @media (min-width: 860px) {
